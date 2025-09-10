@@ -8,8 +8,8 @@
 import Foundation
 
 enum NetworkPaths: String {
-    case popularMovies = "movie/popular"
-    case movies = "search/movie"
-    case tvs = "search/tv"
-    case persons = "search/person"
+    case popularMovies = "/movie/popular"
+    case movies = "/search/movie"
+    case tvs = "/search/tv"
+    case persons = "/search/person"
 }

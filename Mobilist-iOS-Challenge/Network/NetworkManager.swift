@@ -37,7 +37,7 @@ final class NetworkManager: NetworkManagerProtocol {
     static let shared = NetworkManager()
     private init() { }
 
-    private let baseURL = "https://api.themoviedb.org/3/"
+    private let baseURL = "https://api.themoviedb.org/3"
 
     func request<T: Decodable>(
         path: String,
