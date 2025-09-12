@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 class MovieCollectionViewCell: UICollectionViewCell {
 
@@ -26,22 +27,19 @@ class MovieCollectionViewCell: UICollectionViewCell {
         
         posterImageView.layer.cornerRadius = 8
         posterImageView.clipsToBounds = true
+        
+        titleLabel.numberOfLines = 2
+        overviewLabel.numberOfLines = 4
+        overviewLabel.lineBreakMode = .byTruncatingTail
     }
     
     func configure(with movie: Movie) {
         titleLabel.text = movie.title
         overviewLabel.text = movie.overview
-        // image loader yazılacak o eksik unutma kingfisher falan kjullan
-        //simdilik asagıdaki gibi kalsın
+        
         let imageUrl = "https://image.tmdb.org/t/p/w500\(movie.posterPath)"
         if let url = URL(string: imageUrl) {
-            URLSession.shared.dataTask(with: url) { data, _, _ in
-                if let data = data {
-                    DispatchQueue.main.async {
-                        self.posterImageView.image = UIImage(data: data)
-                    }
-                }
-            }.resume()
+            posterImageView.kf.setImage(with: url, placeholder: UIImage(named: "placeholder"))
         }
     }
 

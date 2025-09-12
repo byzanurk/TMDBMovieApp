@@ -22,14 +22,28 @@ class MainViewController: UIViewController {
         collectionView.dataSource = self
         collectionView.register(UINib(nibName: "MovieCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "MovieCollectionViewCell")
         
+        let startIndex = viewModel.movies.count
         viewModel.fetchPopularMovies { [weak self] success in
-            if success {
-                DispatchQueue.main.async {
+            if success, let self = self {
+                let endIndex = self.viewModel.movies.count
+                let indexPaths = (startIndex..<endIndex).map { IndexPath(row: $0, section: 0) }
+                self.collectionView.insertItems(at: indexPaths)
+            }
+        }
+    }
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let offsetY = scrollView.contentOffset.y
+        let contentHeight = scrollView.contentSize.height
+        let height = scrollView.frame.size.height
+
+        if offsetY > contentHeight - height - 100 { // son 100px kaldığında
+            viewModel.fetchPopularMovies { [weak self] success in
+                if success {
                     self?.collectionView.reloadData()
                 }
             }
         }
-        
     }
 
 }

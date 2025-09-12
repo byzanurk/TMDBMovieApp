@@ -21,18 +21,18 @@
                         <rect key="frame" x="8" y="60" width="493" height="191"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="titleLabel" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="n1v-X0-JcZ">
-                                <rect key="frame" x="148" y="12" width="337" height="40"/>
+                                <rect key="frame" x="148" y="12" width="337" height="61"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="40" id="Ynj-e6-Wgd"/>
+                                    <constraint firstAttribute="height" constant="61" id="8Oa-ox-7Nz"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="overviewLabel" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yjj-tt-qS4">
-                                <rect key="frame" x="148" y="52" width="337" height="130"/>
+                                <rect key="frame" x="148" y="72" width="337" height="110"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="130" id="uh4-RQ-so4"/>
+                                    <constraint firstAttribute="height" constant="110" id="ZJf-gH-Zpy"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                 <nil key="textColor"/>
@@ -60,7 +60,6 @@
                             <constraint firstAttribute="bottom" secondItem="HqZ-Ix-IuQ" secondAttribute="bottom" id="XNJ-Yn-VBs"/>
                             <constraint firstItem="n1v-X0-JcZ" firstAttribute="top" secondItem="eQm-KU-0gc" secondAttribute="top" constant="12" id="Ziw-Qy-AlK"/>
                             <constraint firstItem="HqZ-Ix-IuQ" firstAttribute="top" secondItem="eQm-KU-0gc" secondAttribute="top" constant="-40" id="cpr-4c-CqE"/>
-                            <constraint firstItem="yjj-tt-qS4" firstAttribute="top" secondItem="n1v-X0-JcZ" secondAttribute="bottom" id="klH-HO-iPO"/>
                             <constraint firstItem="n1v-X0-JcZ" firstAttribute="leading" secondItem="HqZ-Ix-IuQ" secondAttribute="trailing" constant="8" symbolic="YES" id="mNG-eE-fXa"/>
                             <constraint firstAttribute="trailing" secondItem="yjj-tt-qS4" secondAttribute="trailing" constant="8" id="u7Y-dG-0lD"/>
                         </constraints>
