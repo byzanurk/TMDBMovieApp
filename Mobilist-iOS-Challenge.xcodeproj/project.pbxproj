@@ -6,6 +6,10 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		D81293672E749DBB002A2B85 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = D81293662E749DBB002A2B85 /* Kingfisher */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXFileReference section */
 		D8F3FF8F2E704F4300D1B393 /* Mobilist-iOS-Challenge.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Mobilist-iOS-Challenge.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -37,6 +41,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D81293672E749DBB002A2B85 /* Kingfisher in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -79,6 +84,7 @@
 			);
 			name = "Mobilist-iOS-Challenge";
 			packageProductDependencies = (
+				D81293662E749DBB002A2B85 /* Kingfisher */,
 			);
 			productName = "Mobilist-iOS-Challenge";
 			productReference = D8F3FF8F2E704F4300D1B393 /* Mobilist-iOS-Challenge.app */;
@@ -108,6 +114,9 @@
 			);
 			mainGroup = D8F3FF862E704F4300D1B393;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				D81293652E749DBB002A2B85 /* XCRemoteSwiftPackageReference "Kingfisher" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = D8F3FF902E704F4300D1B393 /* Products */;
 			projectDirPath = "";
@@ -338,6 +347,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		D81293652E749DBB002A2B85 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 8.5.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		D81293662E749DBB002A2B85 /* Kingfisher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D81293652E749DBB002A2B85 /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = D8F3FF872E704F4300D1B393 /* Project object */;
 }
