@@ -14,6 +14,7 @@
 		D8F3FFA12E704F4400D1B393 /* Exceptions for "Mobilist-iOS-Challenge" folder in "Mobilist-iOS-Challenge" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
+				Flow/Main/View/MainViewController.swift,
 				Info.plist,
 			);
 			target = D8F3FF8E2E704F4300D1B393 /* Mobilist-iOS-Challenge */;
