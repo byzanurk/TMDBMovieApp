@@ -7,17 +7,17 @@
 
 import UIKit
 
-class MainViewController: UIViewController {
+final class MainViewController: UIViewController {
 
-    @IBOutlet weak var searchBar: UISearchBar!
-    @IBOutlet weak var headerLabel: UILabel!
-    @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet private weak var searchBar: UISearchBar!
+    @IBOutlet private weak var headerLabel: UILabel!
+    @IBOutlet private weak var collectionView: UICollectionView!
     
     let viewModel = MainViewModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        searchBar.delegate = self
         collectionView.delegate = self
         collectionView.dataSource = self
         collectionView.register(UINib(nibName: "MovieCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "MovieCollectionViewCell")
@@ -37,7 +37,7 @@ class MainViewController: UIViewController {
         let contentHeight = scrollView.contentSize.height
         let height = scrollView.frame.size.height
 
-        if offsetY > contentHeight - height - 100 { // son 100px kaldığında
+        if offsetY > contentHeight - height - 100 {
             viewModel.fetchPopularMovies { [weak self] success in
                 if success {
                     self?.collectionView.reloadData()
@@ -66,5 +66,18 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let width = collectionView.frame.width - 32
         return CGSize(width: width, height: 140)
+    }
+}
+
+extension MainViewController: UISearchBarDelegate {
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        if searchText.isEmpty {
+            viewModel.fetchPopularMovies { [weak self] _ in
+                self?.collectionView.reloadData()
+            }
+        } else {
+            viewModel.searchMovies(query: searchText) { [weak self] _ in
+                self?.collectionView.reloadData()
+        }
     }
 }

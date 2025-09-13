@@ -25,12 +25,16 @@ class MovieCollectionViewCell: UICollectionViewCell {
         containerView.layer.shadowRadius = 4
         containerView.layer.shadowOffset = CGSize(width: 0, height: 2)
         
-        posterImageView.layer.cornerRadius = 8
-        posterImageView.clipsToBounds = true
+        posterImageView.layer.cornerRadius = 12
+        posterImageView.layer.masksToBounds = false
+        posterImageView.layer.shadowColor = UIColor.black.cgColor
+        posterImageView.layer.shadowOpacity = 0.1
+        posterImageView.layer.shadowRadius = 4
+        posterImageView.layer.shadowOffset = CGSize(width: 0, height: 2)
         
         titleLabel.numberOfLines = 2
-        overviewLabel.numberOfLines = 4
-        overviewLabel.lineBreakMode = .byTruncatingTail
+        overviewLabel.numberOfLines = 0
+        titleLabel.textAlignment = .center
     }
     
     func configure(with movie: Movie) {
