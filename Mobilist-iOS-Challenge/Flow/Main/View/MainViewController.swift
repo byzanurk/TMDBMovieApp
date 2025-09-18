@@ -71,13 +71,8 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
 
 extension MainViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        if searchText.isEmpty {
-            viewModel.fetchPopularMovies { [weak self] _ in
-                self?.collectionView.reloadData()
-            }
-        } else {
-            viewModel.searchMovies(query: searchText) { [weak self] _ in
-                self?.collectionView.reloadData()
+        viewModel.searchMovies(query: searchText) { [weak self] _ in
+            self?.collectionView.reloadData()
         }
     }
 }

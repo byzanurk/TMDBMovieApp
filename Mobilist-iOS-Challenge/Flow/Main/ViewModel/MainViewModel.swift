@@ -10,6 +10,7 @@ import Foundation
 class MainViewModel {
     
     var movies: [Movie] = []
+    private var allPopularMovies: [Movie] = []
     private var currentPage = 1
     private var totalPages = 1
     private var isFetching = false
@@ -34,6 +35,7 @@ class MainViewModel {
             switch result {
             case .success(let response):
                 self.movies.append(contentsOf: response.results)
+                self.allPopularMovies.append(contentsOf: response.results)
                 self.totalPages = response.totalPages
                 self.currentPage += 1
                 completion(true)
@@ -46,28 +48,12 @@ class MainViewModel {
     
     func searchMovies(query: String, completion: @escaping (Bool) -> Void) {
         guard !query.isEmpty else {
+            self.movies = self.allPopularMovies
+            completion(true)
             return
         }
-        
-        let path = "\(NetworkPaths.movies.rawValue)?api_key=\(Config.tmdbApiKey)&language=en-US&query=\(query.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? "")"
-        
-        NetworkManager.shared.request(
-            path: path,
-            method: .get,
-            headers: nil,
-            parameters: nil,
-            responseType: MovieResponse.self
-        ) { [weak self] result in
-            switch result {
-            case .success(let response):
-                completion(true)
-                self?.movies = response.results
-            case .failure(let error):
-                completion(false)
-                print("Error searching movies:", error)
-            }
-        }
+        self.movies = self.allPopularMovies.filter { $0.title.lowercased().contains(query.lowercased()) }
+        completion(true)
     }
     
 }
-
