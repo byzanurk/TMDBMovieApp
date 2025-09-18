@@ -8,7 +8,7 @@
 import UIKit
 
 final class MainViewController: UIViewController {
-
+    
     @IBOutlet private weak var searchBar: UISearchBar!
     @IBOutlet private weak var headerLabel: UILabel!
     @IBOutlet private weak var collectionView: UICollectionView!
@@ -66,6 +66,15 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let width = collectionView.frame.width - 12
         return CGSize(width: width, height: 140)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let selectedMovie = viewModel.movies[indexPath.row]
+        let storyboard = UIStoryboard(name: "MovieDetailViewController", bundle: nil)
+        if let detailVC = storyboard.instantiateViewController(identifier: "MovieDetailViewController") as? MovieDetailViewController {
+            detailVC.movie = selectedMovie
+            navigationController?.pushViewController(detailVC, animated: true)
+        }
     }
 }
 

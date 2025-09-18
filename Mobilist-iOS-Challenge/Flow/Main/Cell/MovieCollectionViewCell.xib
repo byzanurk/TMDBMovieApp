@@ -27,10 +27,10 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="HqZ-Ix-IuQ">
-                                <rect key="frame" x="0.0" y="-50" width="140" height="224"/>
+                                <rect key="frame" x="0.0" y="-40" width="140" height="214"/>
                                 <constraints>
+                                    <constraint firstAttribute="height" constant="214" id="Pgc-ew-fiq"/>
                                     <constraint firstAttribute="width" constant="140" id="cF6-m0-KpU"/>
-                                    <constraint firstAttribute="height" constant="224" id="f4d-wn-U9A"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
@@ -54,7 +54,7 @@
                             <constraint firstAttribute="bottom" secondItem="aaK-C6-y0x" secondAttribute="bottom" constant="16" id="Gxh-Ou-bdl"/>
                             <constraint firstItem="HqZ-Ix-IuQ" firstAttribute="leading" secondItem="U7f-2v-Avg" secondAttribute="leading" id="HgC-7v-khv"/>
                             <constraint firstItem="lSt-mZ-OgP" firstAttribute="top" secondItem="U7f-2v-Avg" secondAttribute="top" constant="16" id="Uhh-Rw-dv5"/>
-                            <constraint firstItem="HqZ-Ix-IuQ" firstAttribute="top" secondItem="U7f-2v-Avg" secondAttribute="top" constant="-50" id="k35-V7-8Eo"/>
+                            <constraint firstItem="HqZ-Ix-IuQ" firstAttribute="top" secondItem="U7f-2v-Avg" secondAttribute="top" constant="-40" id="k35-V7-8Eo"/>
                             <constraint firstItem="lSt-mZ-OgP" firstAttribute="leading" secondItem="HqZ-Ix-IuQ" secondAttribute="trailing" constant="8" id="kmv-li-abN"/>
                             <constraint firstAttribute="bottom" secondItem="HqZ-Ix-IuQ" secondAttribute="bottom" id="s63-E6-40f"/>
                         </constraints>
