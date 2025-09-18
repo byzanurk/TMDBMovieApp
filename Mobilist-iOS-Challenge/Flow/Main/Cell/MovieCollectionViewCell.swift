@@ -21,20 +21,23 @@ class MovieCollectionViewCell: UICollectionViewCell {
         containerView.layer.cornerRadius = 12
         containerView.layer.masksToBounds = false
         containerView.layer.shadowColor = UIColor.black.cgColor
-        containerView.layer.shadowOpacity = 0.1
+        containerView.layer.shadowOpacity = 0.15
         containerView.layer.shadowRadius = 4
         containerView.layer.shadowOffset = CGSize(width: 0, height: 2)
         
-        posterImageView.layer.cornerRadius = 12
-        posterImageView.layer.masksToBounds = false
-        posterImageView.layer.shadowColor = UIColor.black.cgColor
-        posterImageView.layer.shadowOpacity = 0.1
-        posterImageView.layer.shadowRadius = 4
-        posterImageView.layer.shadowOffset = CGSize(width: 0, height: 2)
+        posterImageView.layer.cornerRadius = 8
+        posterImageView.clipsToBounds = true
         
         titleLabel.numberOfLines = 2
-        overviewLabel.numberOfLines = 0
+        overviewLabel.numberOfLines = 5
         titleLabel.textAlignment = .center
+    }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        titleLabel.text = nil
+        overviewLabel.text = nil
+        posterImageView.image = nil
     }
     
     func configure(with movie: Movie) {
