@@ -12,11 +12,12 @@ class MovieDetailViewController: UIViewController {
 
     var movie: Movie?
     
-    @IBOutlet weak var posterImageView: UIImageView!
     @IBOutlet weak var backgroundImageView: UIImageView!
+    @IBOutlet weak var posterImageView: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var summaryLabel: UILabel!
     @IBOutlet weak var overviewLabel: UILabel!
+    
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
