@@ -7,12 +7,12 @@
 
 import Foundation
 
-struct TVResponse: Decodable {
+struct TVShowResponse: Decodable {
     let page: Int
-    let results: [TV]
+    let results: [TVShow]
 }
 
-struct TV: Decodable {
+struct TVShow: Decodable {
     let name: String
     let overview: String
     let posterPath: String?

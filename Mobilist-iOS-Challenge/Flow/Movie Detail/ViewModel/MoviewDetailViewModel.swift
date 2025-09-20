@@ -39,5 +39,26 @@ class MovieDetailViewModel {
         }
     }
     
+    func fetchMovieCast(movieId: Int, completion: @escaping ([Cast]) -> Void) {
+        let path = "/movie/\(movieId)/credits?api_key=\(Config.tmdbApiKey)"
+        
+        networkManager.request(
+            baseURL: Config.APIBaseURL.tmdbBaseURL,
+            path: path,
+            method: .get,
+            headers: nil,
+            parameters: nil, // Artık parametre yok, API key path'e eklendi
+            responseType: MovieCreditsResponse.self
+        ) { result in
+            switch result {
+            case .success(let response):
+                completion(response.cast)
+            case .failure(let error):
+                print("error fething cast:", error)
+                completion([])
+            }
+        }
+    }
+    
     
 }

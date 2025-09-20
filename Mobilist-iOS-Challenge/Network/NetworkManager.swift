@@ -90,6 +90,13 @@ final class NetworkManager: NetworkManagerProtocol {
                 return
             }
             
+            // --- LOG DATA SIZE AND PREVIEW ---
+            print("[NetworkManager] Response data size: \(data.count) bytes")
+            if let preview = String(data: data.prefix(500), encoding: .utf8) {
+                print("[NetworkManager] Response preview: \(preview)")
+            }
+            // --- END LOG ---
+            
             do {
                 let decoded = try JSONDecoder().decode(responseType, from: data)
                 DispatchQueue.main.async { completion(.success(decoded)) }
@@ -99,6 +106,3 @@ final class NetworkManager: NetworkManagerProtocol {
         }.resume()
     }
 }
-    
-    
-

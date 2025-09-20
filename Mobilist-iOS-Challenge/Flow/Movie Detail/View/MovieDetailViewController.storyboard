@@ -51,7 +51,7 @@
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Overview" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rrM-6P-rVM">
                                                 <rect key="frame" x="16" y="576" width="408" height="21.666666666666629"/>
-                                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="18"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
@@ -87,6 +87,20 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
+                                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="WLO-Tk-mNh">
+                                                <rect key="frame" x="16" y="869.66666666666663" width="408" height="239.99999999999989"/>
+                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="240" id="Wen-5n-HZB"/>
+                                                </constraints>
+                                                <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="pxa-vv-AGb">
+                                                    <size key="itemSize" width="128" height="128"/>
+                                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                                </collectionViewFlowLayout>
+                                                <cells/>
+                                            </collectionView>
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <constraints>
@@ -109,6 +123,8 @@
                                             <constraint firstAttribute="height" constant="1280" id="YVc-df-eAp"/>
                                             <constraint firstItem="UHu-te-TLL" firstAttribute="top" secondItem="14e-zr-Xr8" secondAttribute="bottom" constant="8" id="Ya1-cd-Hkj"/>
                                             <constraint firstAttribute="trailing" secondItem="Bhw-c1-ReX" secondAttribute="trailing" id="biI-6W-3ok"/>
+                                            <constraint firstItem="WLO-Tk-mNh" firstAttribute="top" secondItem="UHu-te-TLL" secondAttribute="bottom" constant="8" id="dgR-8o-frC"/>
+                                            <constraint firstAttribute="trailing" secondItem="WLO-Tk-mNh" secondAttribute="trailing" constant="16" id="k2g-rd-YKe"/>
                                             <constraint firstItem="rrM-6P-rVM" firstAttribute="leading" secondItem="Tq2-O3-fvL" secondAttribute="leading" constant="16" id="nZb-OK-Ffy"/>
                                             <constraint firstAttribute="trailing" secondItem="14e-zr-Xr8" secondAttribute="trailing" constant="16" id="qnZ-Ho-EeU"/>
                                             <constraint firstItem="Bhw-c1-ReX" firstAttribute="top" secondItem="Tq2-O3-fvL" secondAttribute="top" id="rQG-8w-8Q1"/>
@@ -116,6 +132,7 @@
                                             <constraint firstItem="UHu-te-TLL" firstAttribute="leading" secondItem="Tq2-O3-fvL" secondAttribute="leading" constant="16" id="vKJ-Ah-7nh"/>
                                             <constraint firstItem="3f5-qE-ei4" firstAttribute="leading" secondItem="Tq2-O3-fvL" secondAttribute="leading" constant="16" id="wuU-t1-XXF"/>
                                             <constraint firstItem="lsK-kD-Atf" firstAttribute="leading" secondItem="Tq2-O3-fvL" secondAttribute="leading" constant="136" id="yRs-DP-G03"/>
+                                            <constraint firstItem="WLO-Tk-mNh" firstAttribute="leading" secondItem="Tq2-O3-fvL" secondAttribute="leading" constant="16" id="zIL-hv-Ool"/>
                                             <constraint firstItem="3f5-qE-ei4" firstAttribute="top" secondItem="rrM-6P-rVM" secondAttribute="bottom" constant="8" id="zR8-XP-c0T"/>
                                         </constraints>
                                     </view>
@@ -124,7 +141,6 @@
                                     <constraint firstItem="Tq2-O3-fvL" firstAttribute="leading" secondItem="HPl-Ms-NPs" secondAttribute="leading" id="H9Z-4C-Vi7"/>
                                     <constraint firstAttribute="bottom" secondItem="Tq2-O3-fvL" secondAttribute="bottom" id="Od2-9D-L9f"/>
                                     <constraint firstAttribute="trailing" secondItem="Tq2-O3-fvL" secondAttribute="trailing" id="YOq-Vo-HgM"/>
-                                    <constraint firstItem="Tq2-O3-fvL" firstAttribute="centerX" secondItem="HPl-Ms-NPs" secondAttribute="centerX" id="a2p-Rq-VEM"/>
                                     <constraint firstItem="Tq2-O3-fvL" firstAttribute="top" secondItem="HPl-Ms-NPs" secondAttribute="top" id="jfw-8f-4Lq"/>
                                 </constraints>
                             </scrollView>
@@ -141,6 +157,7 @@
                     <size key="freeformSize" width="440" height="1280"/>
                     <connections>
                         <outlet property="backgroundImageView" destination="Bhw-c1-ReX" id="3fz-kC-zuT"/>
+                        <outlet property="castCollectionView" destination="WLO-Tk-mNh" id="piV-Vy-5IT"/>
                         <outlet property="overviewLabel" destination="rrM-6P-rVM" id="ofC-CN-Joo"/>
                         <outlet property="posterImageView" destination="lsK-kD-Atf" id="Z4W-Hj-aW8"/>
                         <outlet property="titleLabel" destination="MQJ-Fh-IX0" id="OaI-5y-dM5"/>
