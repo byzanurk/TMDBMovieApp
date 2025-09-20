@@ -17,6 +17,17 @@ struct Config {
         return apiKey
     }()
     
-    // youtube vide0 api key
+    static let youtubeApiKey: String = {
+        guard let path = Bundle.main.path(forResource: "Config", ofType: "plist"),
+              let config = NSDictionary(contentsOfFile: path),
+              let apiKey = config["YOUTUBE_API_KEY"] as? String else {
+            fatalError("Config.plist file or YOUTUBE_API_KEY is not find")
+        }
+        return apiKey
+    }()
     
+    enum APIBaseURL {
+        static let tmdbBaseURL = "https://api.themoviedb.org/3"
+        static let youtubeBaseURL = "https://www.googleapis.com/youtube/v3"
+    }
 }
