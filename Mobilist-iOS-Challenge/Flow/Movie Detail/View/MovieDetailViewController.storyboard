@@ -131,13 +131,13 @@
                                             <constraint firstItem="MQJ-Fh-IX0" firstAttribute="leading" secondItem="Tq2-O3-fvL" secondAttribute="leading" constant="8" id="rv8-fz-xi0"/>
                                             <constraint firstItem="UHu-te-TLL" firstAttribute="leading" secondItem="Tq2-O3-fvL" secondAttribute="leading" constant="16" id="vKJ-Ah-7nh"/>
                                             <constraint firstItem="3f5-qE-ei4" firstAttribute="leading" secondItem="Tq2-O3-fvL" secondAttribute="leading" constant="16" id="wuU-t1-XXF"/>
-                                            <constraint firstItem="lsK-kD-Atf" firstAttribute="leading" secondItem="Tq2-O3-fvL" secondAttribute="leading" constant="136" id="yRs-DP-G03"/>
                                             <constraint firstItem="WLO-Tk-mNh" firstAttribute="leading" secondItem="Tq2-O3-fvL" secondAttribute="leading" constant="16" id="zIL-hv-Ool"/>
                                             <constraint firstItem="3f5-qE-ei4" firstAttribute="top" secondItem="rrM-6P-rVM" secondAttribute="bottom" constant="8" id="zR8-XP-c0T"/>
                                         </constraints>
                                     </view>
                                 </subviews>
                                 <constraints>
+                                    <constraint firstItem="Tq2-O3-fvL" firstAttribute="centerX" secondItem="HPl-Ms-NPs" secondAttribute="centerX" id="9Bt-XR-Yeu"/>
                                     <constraint firstItem="Tq2-O3-fvL" firstAttribute="leading" secondItem="HPl-Ms-NPs" secondAttribute="leading" id="H9Z-4C-Vi7"/>
                                     <constraint firstAttribute="bottom" secondItem="Tq2-O3-fvL" secondAttribute="bottom" id="Od2-9D-L9f"/>
                                     <constraint firstAttribute="trailing" secondItem="Tq2-O3-fvL" secondAttribute="trailing" id="YOq-Vo-HgM"/>

@@ -93,8 +93,6 @@ extension PersonDetailViewController: UICollectionViewDelegate, UICollectionView
                 detailVC.movie = selectedMovie
                 navigationController?.pushViewController(detailVC, animated: true)
             }
-        } else if collectionView == tvCollectionView {
-            // Eğer TV detay sayfan varsa burada benzer şekilde yönlendirme yapabilirsin.
         }
     }
 }
