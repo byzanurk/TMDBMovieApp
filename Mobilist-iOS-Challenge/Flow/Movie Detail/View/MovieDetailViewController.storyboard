@@ -64,16 +64,42 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
+                                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="14e-zr-Xr8">
+                                                <rect key="frame" x="16" y="653.66666666666663" width="408" height="160"/>
+                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="160" id="DZb-o1-7eh"/>
+                                                </constraints>
+                                                <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="JDs-MV-PVv">
+                                                    <size key="itemSize" width="128" height="128"/>
+                                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                                </collectionViewFlowLayout>
+                                                <cells/>
+                                            </collectionView>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Cast" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UHu-te-TLL">
+                                                <rect key="frame" x="16" y="821.66666666666663" width="408" height="40"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="40" id="T1V-IR-ntc"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="22"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <constraints>
                                             <constraint firstItem="lsK-kD-Atf" firstAttribute="width" secondItem="Bhw-c1-ReX" secondAttribute="width" multiplier="0.381818" id="0oz-pO-RH7"/>
                                             <constraint firstAttribute="trailing" secondItem="3f5-qE-ei4" secondAttribute="trailing" constant="16" id="1DJ-PA-4eR"/>
                                             <constraint firstItem="Pzm-zO-4ai" firstAttribute="leading" secondItem="Tq2-O3-fvL" secondAttribute="leading" constant="16" id="5DP-bX-uTH"/>
+                                            <constraint firstItem="14e-zr-Xr8" firstAttribute="top" secondItem="3f5-qE-ei4" secondAttribute="bottom" constant="8" id="6ah-kx-w9J"/>
                                             <constraint firstItem="lsK-kD-Atf" firstAttribute="height" secondItem="Bhw-c1-ReX" secondAttribute="height" multiplier="0.440385" id="6cb-mV-O77"/>
+                                            <constraint firstItem="14e-zr-Xr8" firstAttribute="leading" secondItem="Tq2-O3-fvL" secondAttribute="leading" constant="16" id="6zd-Pb-Kla"/>
                                             <constraint firstAttribute="trailing" secondItem="MQJ-Fh-IX0" secondAttribute="trailing" constant="8" id="Ajv-IG-3yh"/>
                                             <constraint firstItem="Bhw-c1-ReX" firstAttribute="leading" secondItem="Tq2-O3-fvL" secondAttribute="leading" id="DqR-Sc-OGV"/>
                                             <constraint firstAttribute="trailing" secondItem="Pzm-zO-4ai" secondAttribute="trailing" constant="16" id="GvW-dF-tgx"/>
+                                            <constraint firstAttribute="trailing" secondItem="UHu-te-TLL" secondAttribute="trailing" constant="16" id="HBL-DQ-CRJ"/>
                                             <constraint firstItem="Pzm-zO-4ai" firstAttribute="top" secondItem="Bhw-c1-ReX" secondAttribute="bottom" constant="8" id="OFc-Si-6T5"/>
                                             <constraint firstItem="MQJ-Fh-IX0" firstAttribute="top" secondItem="lsK-kD-Atf" secondAttribute="bottom" constant="8" id="PyK-Dv-o3i"/>
                                             <constraint firstItem="lsK-kD-Atf" firstAttribute="top" secondItem="Tq2-O3-fvL" secondAttribute="top" constant="146" id="Shk-MO-sID"/>
@@ -81,10 +107,13 @@
                                             <constraint firstAttribute="trailing" secondItem="lsK-kD-Atf" secondAttribute="trailing" constant="136" id="XuB-L3-iMl"/>
                                             <constraint firstItem="rrM-6P-rVM" firstAttribute="top" secondItem="Pzm-zO-4ai" secondAttribute="bottom" constant="8" id="YOe-z9-maI"/>
                                             <constraint firstAttribute="height" constant="1280" id="YVc-df-eAp"/>
+                                            <constraint firstItem="UHu-te-TLL" firstAttribute="top" secondItem="14e-zr-Xr8" secondAttribute="bottom" constant="8" id="Ya1-cd-Hkj"/>
                                             <constraint firstAttribute="trailing" secondItem="Bhw-c1-ReX" secondAttribute="trailing" id="biI-6W-3ok"/>
                                             <constraint firstItem="rrM-6P-rVM" firstAttribute="leading" secondItem="Tq2-O3-fvL" secondAttribute="leading" constant="16" id="nZb-OK-Ffy"/>
+                                            <constraint firstAttribute="trailing" secondItem="14e-zr-Xr8" secondAttribute="trailing" constant="16" id="qnZ-Ho-EeU"/>
                                             <constraint firstItem="Bhw-c1-ReX" firstAttribute="top" secondItem="Tq2-O3-fvL" secondAttribute="top" id="rQG-8w-8Q1"/>
                                             <constraint firstItem="MQJ-Fh-IX0" firstAttribute="leading" secondItem="Tq2-O3-fvL" secondAttribute="leading" constant="8" id="rv8-fz-xi0"/>
+                                            <constraint firstItem="UHu-te-TLL" firstAttribute="leading" secondItem="Tq2-O3-fvL" secondAttribute="leading" constant="16" id="vKJ-Ah-7nh"/>
                                             <constraint firstItem="3f5-qE-ei4" firstAttribute="leading" secondItem="Tq2-O3-fvL" secondAttribute="leading" constant="16" id="wuU-t1-XXF"/>
                                             <constraint firstItem="lsK-kD-Atf" firstAttribute="leading" secondItem="Tq2-O3-fvL" secondAttribute="leading" constant="136" id="yRs-DP-G03"/>
                                             <constraint firstItem="3f5-qE-ei4" firstAttribute="top" secondItem="rrM-6P-rVM" secondAttribute="bottom" constant="8" id="zR8-XP-c0T"/>
@@ -115,6 +144,7 @@
                         <outlet property="overviewLabel" destination="rrM-6P-rVM" id="ofC-CN-Joo"/>
                         <outlet property="posterImageView" destination="lsK-kD-Atf" id="Z4W-Hj-aW8"/>
                         <outlet property="titleLabel" destination="MQJ-Fh-IX0" id="OaI-5y-dM5"/>
+                        <outlet property="youtubeTrailerCollectionView" destination="14e-zr-Xr8" id="GLf-pQ-lsc"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
