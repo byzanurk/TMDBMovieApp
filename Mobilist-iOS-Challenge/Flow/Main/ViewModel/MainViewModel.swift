@@ -23,6 +23,7 @@ class MainViewModel {
 
         let path = "\(NetworkPaths.popularMovies.rawValue)?api_key=\(Config.tmdbApiKey)&language=en-US&page=\(currentPage)"
         NetworkManager.shared.request(
+            baseURL: Config.APIBaseURL.tmdbBaseURL,
             path: path,
             method: .get,
             headers: nil,
