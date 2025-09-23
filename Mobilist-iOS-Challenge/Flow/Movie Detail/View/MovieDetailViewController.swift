@@ -11,6 +11,7 @@ import Kingfisher
 class MovieDetailViewController: UIViewController {
 
     var movie: Movie?
+    var movieId: Int?
     var youtubeVideos: [YouTubeVideo] = []
     var cast: [Cast] = []
     
@@ -32,7 +33,7 @@ class MovieDetailViewController: UIViewController {
         castCollectionView.delegate = self
         castCollectionView.dataSource = self
         castCollectionView.register(UINib(nibName: "CastCell", bundle: nil), forCellWithReuseIdentifier: "CastCell")
-        
+
         configureUI()
         loadYoutubeTrailers()
         loadCast()
@@ -140,9 +141,14 @@ extension MovieDetailViewController: UICollectionViewDelegate, UICollectionViewD
             }
         } else if collectionView == castCollectionView {
             let selectedCast = cast[indexPath.item]
+            guard let personId = selectedCast.id else {
+                print("MovieDetailVC: selected cast has no person id. cast entry:\(selectedCast)")
+                return
+            }
+            print("MovieDetailVC: navigating to person id:\(personId)")
             let storyboard = UIStoryboard(name: "PersonDetailViewController", bundle: nil)
             if let personDetailVC = storyboard.instantiateViewController(withIdentifier: "PersonDetailViewController") as? PersonDetailViewController {
-                personDetailVC.personId = selectedCast.castId
+                personDetailVC.personId = personId
                 navigationController?.pushViewController(personDetailVC, animated: true)
             }
         }

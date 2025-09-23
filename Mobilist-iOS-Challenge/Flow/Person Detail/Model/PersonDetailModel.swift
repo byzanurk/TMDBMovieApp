@@ -13,15 +13,17 @@ struct PersonDetailResponse: Decodable {
 }
 
 struct PersonDetail: Decodable {
+    let id: Int
     let name: String
     let knownForDepartment: String
     let biography: String
-    let posterPath: String
+    let profilePath: String?
 
     enum CodingKeys: String, CodingKey {
+        case id
         case name
         case knownForDepartment = "known_for_department"
         case biography
-        case posterPath = "poster_path"
+        case profilePath = "profile_path"
     }
 }

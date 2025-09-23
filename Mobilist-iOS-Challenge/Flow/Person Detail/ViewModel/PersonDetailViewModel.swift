@@ -10,9 +10,10 @@ import Foundation
 final class PersonDetailViewModel {
     
     var personDetail: PersonDetail?
-    var movies: [Movie] = []
+    var movies: [Cast] = []
     var tvShows: [Cast] = []
     
+    // MARK: - Person Detail
     func fetchPersonDetail(id: Int, completion: @escaping () -> Void) {
         let baseURL = Config.APIBaseURL.tmdbBaseURL
         let path = "/person/\(id)"
@@ -35,6 +36,7 @@ final class PersonDetailViewModel {
         }
     }
     
+    // MARK: - Movie Credits
     func fetchMovieCredits(id: Int, completion: @escaping () -> Void) {
         let baseURL = Config.APIBaseURL.tmdbBaseURL
         let path = "/person/\(id)/movie_credits"
@@ -45,11 +47,11 @@ final class PersonDetailViewModel {
             method: .get,
             headers: nil,
             parameters: ["api_key": Config.tmdbApiKey, "language": "en-US"],
-            responseType: [Movie].self
+            responseType: MovieCreditsResponse.self
         ) { [weak self] result in
             switch result {
             case .success(let response):
-                self?.movies = response
+                self?.movies = response.cast
                 completion()
             case .failure(let error):
                 print("Error fetching movie credits:", error)
@@ -57,6 +59,7 @@ final class PersonDetailViewModel {
         }
     }
     
+    // MARK: - TV Credits
     func fetchTVCredits(id: Int, completion: @escaping () -> Void) {
         let baseURL = Config.APIBaseURL.tmdbBaseURL
         let path = "/person/\(id)/tv_credits"

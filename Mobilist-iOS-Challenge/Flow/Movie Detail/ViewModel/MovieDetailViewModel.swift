@@ -47,7 +47,7 @@ class MovieDetailViewModel {
             path: path,
             method: .get,
             headers: nil,
-            parameters: nil, // Artık parametre yok, API key path'e eklendi
+            parameters: nil,
             responseType: MovieCreditsResponse.self
         ) { result in
             switch result {

@@ -47,7 +47,19 @@ final class NetworkManager: NetworkManagerProtocol {
         responseType: T.Type,
         completion: @escaping (Result<T, NetworkError>) -> Void
     ) {
-        guard let url = URL(string: baseURL + path) else {
+        var urlString = baseURL + path
+        
+        if method == .get, let parameters = parameters {
+            var components = URLComponents(string: urlString)
+            components?.queryItems = parameters.map { key, value in
+                URLQueryItem(name: key, value: "\(value)")
+            }
+            if let urlWithQuery = components?.url {
+                urlString = urlWithQuery.absoluteString
+            }
+        }
+        
+        guard let url = URL(string: urlString) else {
             DispatchQueue.main.async { completion(.failure(.invalidURL)) }
             return
         }
@@ -59,7 +71,7 @@ final class NetworkManager: NetworkManagerProtocol {
             request.addValue(value, forHTTPHeaderField: key)
         }
         
-        if let parameters = parameters {
+        if method != .get, let parameters = parameters {
             do {
                 request.httpBody = try JSONSerialization.data(withJSONObject: parameters, options: [])
                 request.addValue("application/json", forHTTPHeaderField: "Content-Type")

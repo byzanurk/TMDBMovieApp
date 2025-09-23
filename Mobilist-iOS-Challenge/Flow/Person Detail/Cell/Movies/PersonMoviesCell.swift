@@ -20,9 +20,13 @@ class PersonMoviesCell: UICollectionViewCell {
         movieImageView.clipsToBounds = true
     }
     
-    func configure(with movie: Movie) {
-        let url = URL(string: "https://image.tmdb.org/t/p/w500\(movie.posterPath)")
-        movieImageView.kf.setImage(with: url, placeholder: UIImage(named: "placeholder"))
+    func configure(with cast: Cast) {
+        if let posterPath = cast.posterPath {
+            let url = URL(string: "https://image.tmdb.org/t/p/w500\(posterPath)")
+            movieImageView.kf.setImage(with: url, placeholder: UIImage(named: "placeholder"))
+        } else {
+            movieImageView.image = UIImage(named: "placeholder")
+        }
     }
     
     override func prepareForReuse() {
