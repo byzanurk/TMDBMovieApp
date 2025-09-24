@@ -28,11 +28,11 @@
                                                     <constraint firstAttribute="height" constant="520" id="dTg-J0-olw"/>
                                                 </constraints>
                                             </imageView>
-                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="lsK-kD-Atf">
-                                                <rect key="frame" x="136" y="146" width="168" height="229"/>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="lsK-kD-Atf">
+                                                <rect key="frame" x="136" y="146" width="168" height="228"/>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MQJ-Fh-IX0">
-                                                <rect key="frame" x="8" y="383" width="424" height="40"/>
+                                                <rect key="frame" x="8" y="382" width="424" height="40"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="40" id="yck-gW-fZL"/>
                                                 </constraints>
@@ -101,22 +101,84 @@
                                                 </collectionViewFlowLayout>
                                                 <cells/>
                                             </collectionView>
+                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="center" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="UL8-hd-Akb">
+                                                <rect key="frame" x="136" y="430" width="168" height="30"/>
+                                                <subviews>
+                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="star" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="pMG-LC-SYC">
+                                                        <rect key="frame" x="0.0" y="4.6666666666666679" width="30.333333333333332" height="19.999999999999996"/>
+                                                        <color key="tintColor" systemColor="systemOrangeColor"/>
+                                                    </imageView>
+                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="star" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="BhX-ay-ye1">
+                                                        <rect key="frame" x="34.333333333333343" y="4.6666666666666679" width="30.333333333333329" height="19.999999999999996"/>
+                                                        <color key="tintColor" systemColor="systemOrangeColor"/>
+                                                    </imageView>
+                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="star" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="oRZ-6k-cKC">
+                                                        <rect key="frame" x="68.666666666666657" y="4.6666666666666679" width="30.666666666666671" height="19.999999999999996"/>
+                                                        <color key="tintColor" systemColor="systemOrangeColor"/>
+                                                    </imageView>
+                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="star" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="c1f-b0-vWU">
+                                                        <rect key="frame" x="103.33333333333334" y="4.6666666666666679" width="30.333333333333343" height="19.999999999999996"/>
+                                                        <color key="tintColor" systemColor="systemOrangeColor"/>
+                                                    </imageView>
+                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="star" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="GdU-C8-uo2">
+                                                        <rect key="frame" x="137.66666666666669" y="4.6666666666666679" width="30.333333333333343" height="19.999999999999996"/>
+                                                        <color key="tintColor" systemColor="systemOrangeColor"/>
+                                                    </imageView>
+                                                </subviews>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="30" id="pAd-4t-VaF"/>
+                                                </constraints>
+                                            </stackView>
+                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="tyl-pD-3hW">
+                                                <rect key="frame" x="136" y="430" width="168" height="30"/>
+                                                <subviews>
+                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="star.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="su1-kI-bRS">
+                                                        <rect key="frame" x="0.0" y="-0.33333333333333215" width="30.333333333333332" height="29.666666666666664"/>
+                                                        <color key="tintColor" systemColor="systemOrangeColor"/>
+                                                    </imageView>
+                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="star.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="gnp-4Q-1Jc">
+                                                        <rect key="frame" x="34.333333333333343" y="-0.33333333333333215" width="30.333333333333329" height="29.666666666666664"/>
+                                                        <color key="tintColor" systemColor="systemOrangeColor"/>
+                                                    </imageView>
+                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="star.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="05C-xQ-4DM">
+                                                        <rect key="frame" x="68.666666666666657" y="-0.33333333333333215" width="30.666666666666671" height="29.666666666666664"/>
+                                                        <color key="tintColor" systemColor="systemOrangeColor"/>
+                                                    </imageView>
+                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="star.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="DJM-ka-hpB">
+                                                        <rect key="frame" x="103.33333333333334" y="-0.33333333333333215" width="30.333333333333343" height="29.666666666666664"/>
+                                                        <color key="tintColor" systemColor="systemOrangeColor"/>
+                                                    </imageView>
+                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="star.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="KcK-C6-Okt">
+                                                        <rect key="frame" x="137.66666666666669" y="-0.33333333333333215" width="30.333333333333343" height="29.666666666666664"/>
+                                                        <color key="tintColor" systemColor="systemOrangeColor"/>
+                                                    </imageView>
+                                                </subviews>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="30" id="BNT-QJ-p6O"/>
+                                                </constraints>
+                                            </stackView>
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <constraints>
-                                            <constraint firstItem="lsK-kD-Atf" firstAttribute="width" secondItem="Bhw-c1-ReX" secondAttribute="width" multiplier="0.381818" id="0oz-pO-RH7"/>
                                             <constraint firstAttribute="trailing" secondItem="3f5-qE-ei4" secondAttribute="trailing" constant="16" id="1DJ-PA-4eR"/>
+                                            <constraint firstItem="UL8-hd-Akb" firstAttribute="top" secondItem="MQJ-Fh-IX0" secondAttribute="bottom" constant="8" id="4Pr-Nd-7xJ"/>
                                             <constraint firstItem="Pzm-zO-4ai" firstAttribute="leading" secondItem="Tq2-O3-fvL" secondAttribute="leading" constant="16" id="5DP-bX-uTH"/>
                                             <constraint firstItem="14e-zr-Xr8" firstAttribute="top" secondItem="3f5-qE-ei4" secondAttribute="bottom" constant="8" id="6ah-kx-w9J"/>
-                                            <constraint firstItem="lsK-kD-Atf" firstAttribute="height" secondItem="Bhw-c1-ReX" secondAttribute="height" multiplier="0.440385" id="6cb-mV-O77"/>
                                             <constraint firstItem="14e-zr-Xr8" firstAttribute="leading" secondItem="Tq2-O3-fvL" secondAttribute="leading" constant="16" id="6zd-Pb-Kla"/>
+                                            <constraint firstAttribute="trailing" secondItem="tyl-pD-3hW" secondAttribute="trailing" constant="136" id="9wj-Zf-6MP"/>
+                                            <constraint firstItem="UL8-hd-Akb" firstAttribute="leading" secondItem="Tq2-O3-fvL" secondAttribute="leading" constant="136" id="A7c-aS-zuA"/>
                                             <constraint firstAttribute="trailing" secondItem="MQJ-Fh-IX0" secondAttribute="trailing" constant="8" id="Ajv-IG-3yh"/>
                                             <constraint firstItem="Bhw-c1-ReX" firstAttribute="leading" secondItem="Tq2-O3-fvL" secondAttribute="leading" id="DqR-Sc-OGV"/>
+                                            <constraint firstItem="lsK-kD-Atf" firstAttribute="leading" secondItem="Tq2-O3-fvL" secondAttribute="leading" constant="136" id="EBT-X7-8U8"/>
                                             <constraint firstAttribute="trailing" secondItem="Pzm-zO-4ai" secondAttribute="trailing" constant="16" id="GvW-dF-tgx"/>
                                             <constraint firstAttribute="trailing" secondItem="UHu-te-TLL" secondAttribute="trailing" constant="16" id="HBL-DQ-CRJ"/>
+                                            <constraint firstItem="tyl-pD-3hW" firstAttribute="leading" secondItem="Tq2-O3-fvL" secondAttribute="leading" constant="136" id="LqG-0d-9DS"/>
+                                            <constraint firstItem="tyl-pD-3hW" firstAttribute="top" secondItem="MQJ-Fh-IX0" secondAttribute="bottom" constant="8" id="MyQ-5r-NUT"/>
                                             <constraint firstItem="Pzm-zO-4ai" firstAttribute="top" secondItem="Bhw-c1-ReX" secondAttribute="bottom" constant="8" id="OFc-Si-6T5"/>
                                             <constraint firstItem="MQJ-Fh-IX0" firstAttribute="top" secondItem="lsK-kD-Atf" secondAttribute="bottom" constant="8" id="PyK-Dv-o3i"/>
-                                            <constraint firstItem="lsK-kD-Atf" firstAttribute="top" secondItem="Tq2-O3-fvL" secondAttribute="top" constant="146" id="Shk-MO-sID"/>
+                                            <constraint firstItem="lsK-kD-Atf" firstAttribute="top" secondItem="Tq2-O3-fvL" secondAttribute="top" constant="146" id="Sam-mI-OIJ"/>
+                                            <constraint firstItem="lsK-kD-Atf" firstAttribute="centerY" secondItem="Bhw-c1-ReX" secondAttribute="centerY" id="TKs-eF-eb6"/>
+                                            <constraint firstItem="lsK-kD-Atf" firstAttribute="centerX" secondItem="Tq2-O3-fvL" secondAttribute="centerX" id="U1n-2j-4HB"/>
                                             <constraint firstAttribute="trailing" secondItem="rrM-6P-rVM" secondAttribute="trailing" constant="16" id="UTM-rk-Ta4"/>
                                             <constraint firstAttribute="trailing" secondItem="lsK-kD-Atf" secondAttribute="trailing" constant="136" id="XuB-L3-iMl"/>
                                             <constraint firstItem="rrM-6P-rVM" firstAttribute="top" secondItem="Pzm-zO-4ai" secondAttribute="bottom" constant="8" id="YOe-z9-maI"/>
@@ -128,6 +190,7 @@
                                             <constraint firstItem="rrM-6P-rVM" firstAttribute="leading" secondItem="Tq2-O3-fvL" secondAttribute="leading" constant="16" id="nZb-OK-Ffy"/>
                                             <constraint firstAttribute="trailing" secondItem="14e-zr-Xr8" secondAttribute="trailing" constant="16" id="qnZ-Ho-EeU"/>
                                             <constraint firstItem="Bhw-c1-ReX" firstAttribute="top" secondItem="Tq2-O3-fvL" secondAttribute="top" id="rQG-8w-8Q1"/>
+                                            <constraint firstAttribute="trailing" secondItem="UL8-hd-Akb" secondAttribute="trailing" constant="136" id="rnP-pw-Awb"/>
                                             <constraint firstItem="MQJ-Fh-IX0" firstAttribute="leading" secondItem="Tq2-O3-fvL" secondAttribute="leading" constant="8" id="rv8-fz-xi0"/>
                                             <constraint firstItem="UHu-te-TLL" firstAttribute="leading" secondItem="Tq2-O3-fvL" secondAttribute="leading" constant="16" id="vKJ-Ah-7nh"/>
                                             <constraint firstItem="3f5-qE-ei4" firstAttribute="leading" secondItem="Tq2-O3-fvL" secondAttribute="leading" constant="16" id="wuU-t1-XXF"/>
@@ -158,6 +221,8 @@
                     <connections>
                         <outlet property="backgroundImageView" destination="Bhw-c1-ReX" id="3fz-kC-zuT"/>
                         <outlet property="castCollectionView" destination="WLO-Tk-mNh" id="piV-Vy-5IT"/>
+                        <outlet property="emptyStarsStackView" destination="UL8-hd-Akb" id="48d-Wm-jh8"/>
+                        <outlet property="filledStarsStackView" destination="tyl-pD-3hW" id="VfE-Ad-Wcz"/>
                         <outlet property="overviewLabel" destination="rrM-6P-rVM" id="ofC-CN-Joo"/>
                         <outlet property="posterImageView" destination="lsK-kD-Atf" id="Z4W-Hj-aW8"/>
                         <outlet property="titleLabel" destination="MQJ-Fh-IX0" id="OaI-5y-dM5"/>
@@ -170,8 +235,13 @@
         </scene>
     </scenes>
     <resources>
+        <image name="star" catalog="system" width="128" height="116"/>
+        <image name="star.fill" catalog="system" width="128" height="116"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemOrangeColor">
+            <color red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

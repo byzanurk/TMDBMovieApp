@@ -16,6 +16,7 @@ class MovieDetailViewController: UIViewController {
     var cast: [Cast] = []
     
     private let viewModel = MovieDetailViewModel(networkManager: NetworkManager.shared)
+    private let spinner = UIActivityIndicatorView(style: .large)
     
     @IBOutlet private weak var backgroundImageView: UIImageView!
     @IBOutlet private weak var posterImageView: UIImageView!
@@ -23,6 +24,12 @@ class MovieDetailViewController: UIViewController {
     @IBOutlet private weak var overviewLabel: UILabel!
     @IBOutlet private weak var youtubeTrailerCollectionView: UICollectionView!
     @IBOutlet private weak var castCollectionView: UICollectionView!
+    @IBOutlet private weak var emptyStarsStackView: UIStackView!
+    @IBOutlet private weak var filledStarsStackView: UIStackView!
+    @IBOutlet private weak var filledStarsWidthConstraint: NSLayoutConstraint!
+    
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,11 +41,17 @@ class MovieDetailViewController: UIViewController {
         castCollectionView.dataSource = self
         castCollectionView.register(UINib(nibName: "CastCell", bundle: nil), forCellWithReuseIdentifier: "CastCell")
         
+        spinner.center = view.center
+        spinner.hidesWhenStopped = true
+        view.addSubview(spinner)
+        spinner.startAnimating()
+        
         // movie set edildiyse ui'i hemen yukle
         if movie != nil {
             setupUI()
             loadYoutubeTrailers()
             loadCast()
+            spinner.stopAnimating()
         }
         // eger sadece id geldiyse fetch et
         else if let id = movieId {
@@ -49,22 +62,33 @@ class MovieDetailViewController: UIViewController {
                     self.setupUI()
                     self.loadYoutubeTrailers()
                     self.loadCast()
+                    self.spinner.stopAnimating()
                 }
             }
         }
     }
     
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        if let movie = movie {
+            updateStarsRating(voteAverage: movie.voteAverage)
+        }
+    }
+
+    
     private func setupUI() {
         guard let movie = movie else { return }
         
-        titleLabel.text = movie.title
+        titleLabel.text = movie.title.isEmpty ? "No Title Available" : movie.title
         titleLabel.numberOfLines = 2
         
-        overviewLabel.text = movie.overview
+        overviewLabel.text = movie.overview.isEmpty ? "No Overview Available" : movie.overview
         overviewLabel.numberOfLines = 0
 
         posterImageView.layer.cornerRadius = 8
         posterImageView.clipsToBounds = true
+        
+
                 
         if let posterPath = movie.posterPath, !posterPath.isEmpty {
             let url = URL(string: "https://image.tmdb.org/t/p/w500\(posterPath)")
@@ -85,6 +109,21 @@ class MovieDetailViewController: UIViewController {
             posterImageView.image = UIImage(systemName: "photo")
             backgroundImageView.image = nil
         }
+    }
+    
+    private func updateStarsRating(voteAverage: Double) {
+        let ratingOutOfFive = voteAverage / 2.0
+        let fillRatio = ratingOutOfFive / 5.0
+        let totalWidth = emptyStarsStackView.frame.width
+        
+        let maskLayer = CALayer()
+        maskLayer.frame = CGRect(x: 0,
+                                 y: 0,
+                                 width: totalWidth * CGFloat(fillRatio),
+                                 height: emptyStarsStackView.bounds.height)
+        maskLayer.backgroundColor = UIColor.black.cgColor
+        
+        filledStarsStackView.layer.mask = maskLayer
     }
     
     private func loadYoutubeTrailers() {
@@ -169,3 +208,4 @@ extension MovieDetailViewController: UICollectionViewDelegate, UICollectionViewD
         }
     }
 }
+
