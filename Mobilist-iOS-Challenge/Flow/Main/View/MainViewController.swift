@@ -9,19 +9,35 @@ import UIKit
 
 final class MainViewController: UIViewController {
     
+    // MARK: - Outlets
     @IBOutlet private weak var searchBar: UISearchBar!
     @IBOutlet private weak var headerLabel: UILabel!
     @IBOutlet private weak var collectionView: UICollectionView!
     
+    // MARK: - Properties
     let viewModel = MainViewModel()
     
+    // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupUI()
+        setupCollectionView()
+        fetchInitialMovies()
+    }
+    
+    // MARK: - Setup
+    private func setupUI() {
         searchBar.delegate = self
+    }
+    
+    private func setupCollectionView() {
         collectionView.delegate = self
         collectionView.dataSource = self
         collectionView.register(UINib(nibName: "MovieCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "MovieCollectionViewCell")
-        
+    }
+    
+    // MARK: - Data Fetching
+    private func fetchInitialMovies() {
         let startIndex = viewModel.movies.count
         viewModel.fetchPopularMovies { [weak self] success in
             if success, let self = self {
@@ -32,6 +48,7 @@ final class MainViewController: UIViewController {
         }
     }
     
+    // MARK: - Scroll Handling
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let offsetY = scrollView.contentOffset.y
         let contentHeight = scrollView.contentSize.height
@@ -46,9 +63,18 @@ final class MainViewController: UIViewController {
         }
     }
 
+    // MARK: - Navigation
+    private func navigateToDetail(for movie: Movie) {
+        let storyboard = UIStoryboard(name: "MovieDetailViewController", bundle: nil)
+        if let detailVC = storyboard.instantiateViewController(identifier: "MovieDetailViewController") as? MovieDetailViewController {
+            detailVC.movie = movie
+            navigationController?.pushViewController(detailVC, animated: true)
+        }
+    }
+    
 }
 
-
+// MARK: - Collection View Extension
 extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return viewModel.movies.count
@@ -70,14 +96,11 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let selectedMovie = viewModel.movies[indexPath.row]
-        let storyboard = UIStoryboard(name: "MovieDetailViewController", bundle: nil)
-        if let detailVC = storyboard.instantiateViewController(identifier: "MovieDetailViewController") as? MovieDetailViewController {
-            detailVC.movie = selectedMovie
-            navigationController?.pushViewController(detailVC, animated: true)
-        }
+        navigateToDetail(for: selectedMovie)
     }
 }
 
+// MARK: - Search Bar Extension
 extension MainViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         viewModel.searchMovies(query: searchText) { [weak self] _ in

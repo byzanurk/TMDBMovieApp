@@ -10,14 +10,15 @@ import Kingfisher
 
 class MovieCollectionViewCell: UICollectionViewCell {
 
-    @IBOutlet weak var containerView: UIView!
-    @IBOutlet weak var posterImageView: UIImageView!
-    @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var overviewLabel: UILabel!
+    // MARK: - Outlets
+    @IBOutlet private weak var containerView: UIView!
+    @IBOutlet private weak var posterImageView: UIImageView!
+    @IBOutlet private weak var titleLabel: UILabel!
+    @IBOutlet private weak var overviewLabel: UILabel!
     
+    // MARK: - Lifecycle
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
         containerView.layer.cornerRadius = 12
         containerView.layer.masksToBounds = false
         containerView.layer.shadowColor = UIColor.black.cgColor
@@ -40,6 +41,7 @@ class MovieCollectionViewCell: UICollectionViewCell {
         posterImageView.image = nil
     }
     
+    // MARK: - Configuration
     func configure(with movie: Movie) {
         titleLabel.text = movie.title
         overviewLabel.text = movie.overview

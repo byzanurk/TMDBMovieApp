@@ -9,7 +9,7 @@ import Foundation
 
 class MainViewModel {
     
-    var movies: [Movie] = []
+    private var movies: [Movie] = []
     private var allPopularMovies: [Movie] = []
     private var currentPage = 1
     private var totalPages = 1
