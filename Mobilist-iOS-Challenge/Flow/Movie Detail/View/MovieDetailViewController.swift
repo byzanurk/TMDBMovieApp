@@ -66,8 +66,8 @@ class MovieDetailViewController: UIViewController {
         posterImageView.layer.cornerRadius = 8
         posterImageView.clipsToBounds = true
                 
-        if !movie.posterPath.isEmpty {
-            let url = URL(string: "https://image.tmdb.org/t/p/w500\(movie.posterPath)")
+        if let posterPath = movie.posterPath, !posterPath.isEmpty {
+            let url = URL(string: "https://image.tmdb.org/t/p/w500\(posterPath)")
             posterImageView.kf.setImage(with: url)
             backgroundImageView.kf.setImage(with: url) { [weak self] result in
                 switch result {

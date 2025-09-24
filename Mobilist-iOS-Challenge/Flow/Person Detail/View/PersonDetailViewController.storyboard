@@ -20,7 +20,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="393" height="1280"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ReF-fa-DkT">
-                                        <rect key="frame" x="0.0" y="0.0" width="393" height="975"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="393" height="983"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="92o-yN-jBB">
                                                 <rect key="frame" x="0.0" y="0.0" width="393" height="430"/>
@@ -135,7 +135,7 @@
                                             <constraint firstItem="92o-yN-jBB" firstAttribute="top" secondItem="ReF-fa-DkT" secondAttribute="top" id="Y05-s2-Aep"/>
                                             <constraint firstAttribute="trailing" secondItem="AD1-bM-Bal" secondAttribute="trailing" constant="16" id="ddJ-RG-iQg"/>
                                             <constraint firstItem="5iD-cP-yPv" firstAttribute="leading" secondItem="ReF-fa-DkT" secondAttribute="leading" constant="16" id="eTF-9x-5oj"/>
-                                            <constraint firstAttribute="bottom" secondItem="I0u-qd-try" secondAttribute="bottom" constant="8" id="hQl-it-oHB"/>
+                                            <constraint firstAttribute="bottom" secondItem="I0u-qd-try" secondAttribute="bottom" constant="16" id="hQl-it-oHB"/>
                                             <constraint firstAttribute="trailing" secondItem="I0u-qd-try" secondAttribute="trailing" constant="16" id="hf9-4H-rvX"/>
                                             <constraint firstAttribute="trailing" secondItem="92o-yN-jBB" secondAttribute="trailing" id="k4T-Ir-plZ"/>
                                             <constraint firstItem="92o-yN-jBB" firstAttribute="leading" secondItem="ReF-fa-DkT" secondAttribute="leading" id="lpk-Xa-E30"/>

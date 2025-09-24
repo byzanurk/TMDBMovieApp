@@ -9,7 +9,7 @@ import UIKit
 import Kingfisher
 
 class PersonDetailViewController: UIViewController {
-
+    
     var viewModel = PersonDetailViewModel()
     var personId: Int?
     
@@ -35,7 +35,7 @@ class PersonDetailViewController: UIViewController {
         if let id = personId {
             viewModel.fetchPersonDetail(id: id) { [weak self] in
                 DispatchQueue.main.async {
-                    self?.configureUI()
+                    self?.setupUI()
                 }
             }
             viewModel.fetchMovieCredits(id: id) { [weak self] in
@@ -51,27 +51,39 @@ class PersonDetailViewController: UIViewController {
         }
     }
     
-    private func configureUI() {
-        guard let detail = viewModel.personDetail else { return }
-        nameLabel.text = detail.name
-        jobLabel.text = detail.knownForDepartment
-        biographyLabel.text = detail.biography
+    private func setupUI() {
+        guard let detail = viewModel.personDetail else {
+            nameLabel.text = "Name not available.."
+            jobLabel.text = "Job info not available.."
+            biographyLabel.text = "Biography not available.."
+            biographyLabel.numberOfLines = 0
+            personImageView.image = UIImage(named: "placeholder")
+            backgroundImageView.image = UIImage(named: "placeholder")
+            return
+        }
+        
+        nameLabel.text = detail.name.isEmpty ? "Name not available.." : detail.name
+        jobLabel.text = detail.knownForDepartment.isEmpty ? "Job info not available.." : detail.knownForDepartment
+        biographyLabel.text = detail.biography.isEmpty ? "Biography not available.." : detail.biography
         biographyLabel.numberOfLines = 0
         
-        if let path = detail.profilePath {
+        if let path = detail.profilePath, !path.isEmpty {
             let url = URL(string: "https://image.tmdb.org/t/p/w500\(path)")
-            personImageView.kf.setImage(with: url)
+            personImageView.kf.setImage(with: url, placeholder: UIImage(named: "placeholder"))
             backgroundImageView.kf.setImage(with: url)
-
+            
             let blurEffect = UIBlurEffect(style: .light)
             let blurEffectView = UIVisualEffectView(effect: blurEffect)
             blurEffectView.frame = backgroundImageView.bounds
             blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
             backgroundImageView.addSubview(blurEffectView)
-
-            personImageView.layer.cornerRadius = 8
-            personImageView.layer.masksToBounds = true
+        } else {
+            personImageView.image = UIImage(named: "placeholder")
+            backgroundImageView.image = UIImage(named: "placeholder")
         }
+        
+        personImageView.layer.cornerRadius = 8
+        personImageView.layer.masksToBounds = true
     }
 }
 

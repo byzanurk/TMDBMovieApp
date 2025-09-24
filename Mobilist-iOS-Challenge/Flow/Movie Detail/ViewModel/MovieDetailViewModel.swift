@@ -15,6 +15,7 @@ class MovieDetailViewModel {
         self.networkManager = networkManager
     }
     
+    // MARK: - YouTube Videos
     func fetchYoutubeVideos(for movieTitle: String, completion: @escaping ([YouTubeVideo]) -> Void) {
         let baseURL =  Config.APIBaseURL.youtubeBaseURL
         let apiKey = Config.youtubeApiKey
@@ -39,6 +40,7 @@ class MovieDetailViewModel {
         }
     }
     
+    // MARK: - Movie Cast
     func fetchMovieCast(movieId: Int, completion: @escaping ([Cast]) -> Void) {
         let path = "/movie/\(movieId)/credits?api_key=\(Config.tmdbApiKey)"
         
@@ -60,9 +62,7 @@ class MovieDetailViewModel {
         }
     }
 
-    
-    
-    // buraya bak bi daha
+    // MARK: - Movie Detail
     func fetchMovieDetail(id: Int, completion: @escaping (Movie?) -> Void) {
         let path = "/movie/\(id)"
         networkManager.request(

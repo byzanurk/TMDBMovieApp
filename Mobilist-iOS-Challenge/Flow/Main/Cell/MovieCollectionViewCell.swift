@@ -44,7 +44,7 @@ class MovieCollectionViewCell: UICollectionViewCell {
         titleLabel.text = movie.title
         overviewLabel.text = movie.overview
         
-        let imageUrl = "https://image.tmdb.org/t/p/w500\(movie.posterPath)"
+        let imageUrl = "https://image.tmdb.org/t/p/w500\(movie.posterPath ?? "")"
         if let url = URL(string: imageUrl) {
             posterImageView.kf.setImage(with: url, placeholder: UIImage(named: "placeholder"))
         }
