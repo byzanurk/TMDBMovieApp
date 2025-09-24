@@ -33,13 +33,28 @@ class MovieDetailViewController: UIViewController {
         castCollectionView.delegate = self
         castCollectionView.dataSource = self
         castCollectionView.register(UINib(nibName: "CastCell", bundle: nil), forCellWithReuseIdentifier: "CastCell")
-
-        configureUI()
-        loadYoutubeTrailers()
-        loadCast()
+        
+        // movie set edildiyse ui'i hemen yukle
+        if movie != nil {
+            setupUI()
+            loadYoutubeTrailers()
+            loadCast()
+        }
+        // eger sadece id geldiyse fetch et
+        else if let id = movieId {
+            viewModel.fetchMovieDetail(id: id) { [weak self] movie in
+                guard let self = self else { return }
+                self.movie = movie
+                DispatchQueue.main.async {
+                    self.setupUI()
+                    self.loadYoutubeTrailers()
+                    self.loadCast()
+                }
+            }
+        }
     }
     
-    private func configureUI() {
+    private func setupUI() {
         guard let movie = movie else { return }
         
         titleLabel.text = movie.title

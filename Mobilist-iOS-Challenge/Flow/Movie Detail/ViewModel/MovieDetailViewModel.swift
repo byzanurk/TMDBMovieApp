@@ -59,6 +59,28 @@ class MovieDetailViewModel {
             }
         }
     }
+
     
+    
+    // buraya bak bi daha
+    func fetchMovieDetail(id: Int, completion: @escaping (Movie?) -> Void) {
+        let path = "/movie/\(id)"
+        networkManager.request(
+            baseURL: Config.APIBaseURL.tmdbBaseURL,
+            path: path,
+            method: .get,
+            headers: nil,
+            parameters: ["api_key": Config.tmdbApiKey, "language": "en-US"],
+            responseType: Movie.self
+        ) { result in
+            switch result {
+            case .success(let movie):
+                completion(movie)
+            case .failure(let error):
+                print("Error fetching movie detail:", error)
+                completion(nil)
+            }
+        }
+    }
     
 }
