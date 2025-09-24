@@ -27,7 +27,7 @@ class PersonTVsCell: UICollectionViewCell {
             tvImageView.tintColor = nil
         } else {
             tvImageView.image = UIImage(systemName: "photo")
-            tvImageView.contentMode = .scaleAspectFill
+            tvImageView.contentMode = .scaleAspectFit
             tvImageView.tintColor = .lightGray
         }
     }
