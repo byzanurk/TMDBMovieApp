@@ -21,11 +21,14 @@ class PersonTVsCell: UICollectionViewCell {
     }
 
     func configure(with tvShow: Cast) {
-        if let profilePath = tvShow.profilePath,
-           let url = URL(string: "https://image.tmdb.org/t/p/w500\(profilePath)") {
-            tvImageView.kf.setImage(with: url, placeholder: UIImage(named: "placeholder"))
+        if let path = tvShow.posterPath, !path.isEmpty, let url = URL(string: "https://image.tmdb.org/t/p/w500\(path)") {
+            tvImageView.kf.setImage(with: url)
+            tvImageView.contentMode = .scaleAspectFit
+            tvImageView.tintColor = nil
         } else {
-            tvImageView.image = UIImage(named: "placeholder")
+            tvImageView.image = UIImage(systemName: "photo")
+            tvImageView.contentMode = .scaleAspectFill
+            tvImageView.tintColor = .lightGray
         }
     }
     

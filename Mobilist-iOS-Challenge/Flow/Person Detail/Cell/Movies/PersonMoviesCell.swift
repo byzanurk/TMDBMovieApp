@@ -21,12 +21,13 @@ class PersonMoviesCell: UICollectionViewCell {
     }
     
     func configure(with cast: Cast) {
-        if let posterPath = cast.posterPath {
-            let url = URL(string: "https://image.tmdb.org/t/p/w500\(posterPath)")
-            movieImageView.kf.setImage(with: url, placeholder: UIImage(named: "placeholder"))
-        } else {
-            movieImageView.image = UIImage(named: "placeholder")
+        guard let path = cast.posterPath, !path.isEmpty, let url = URL(string: "https://image.tmdb.org/t/p/w500\(path)") else {
+            movieImageView.image = UIImage(systemName: "photo")
+            movieImageView.contentMode = .scaleAspectFit
+            movieImageView.tintColor = .lightGray
+            return
         }
+        movieImageView.kf.setImage(with: url)
     }
     
     override func prepareForReuse() {
