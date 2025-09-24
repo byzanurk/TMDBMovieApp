@@ -17,12 +17,12 @@ class YoutubeTrailerCell: UICollectionViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
         thumbnailImageView.layer.cornerRadius = 8
         thumbnailImageView.clipsToBounds = true
     }
     
     override func prepareForReuse() {
+        super.prepareForReuse()
         thumbnailImageView.image = nil
         titleLabel.text = nil
     }

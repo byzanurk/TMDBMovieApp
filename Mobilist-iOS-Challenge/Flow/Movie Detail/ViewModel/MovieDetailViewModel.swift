@@ -19,7 +19,7 @@ class MovieDetailViewModel {
     func fetchYoutubeVideos(for movieTitle: String, completion: @escaping ([YouTubeVideo]) -> Void) {
         let baseURL =  Config.APIBaseURL.youtubeBaseURL
         let apiKey = Config.youtubeApiKey
-        let query = (movieTitle + "trailer").addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? movieTitle
+        let query = (movieTitle + " trailer").addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? movieTitle
         let path = "/search?part=snippet&q=\(query)&key=\(apiKey)&maxResults=5&type=video"
         
         networkManager.request(
@@ -56,7 +56,7 @@ class MovieDetailViewModel {
             case .success(let response):
                 completion(response.cast)
             case .failure(let error):
-                print("error fething cast:", error)
+                print("error fetching cast:", error)
                 completion([])
             }
         }

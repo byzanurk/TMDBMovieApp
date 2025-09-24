@@ -17,13 +17,12 @@ class CastCell: UICollectionViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
-        
         personImageView.layer.cornerRadius = 8
         personImageView.clipsToBounds = true
     }
     
     override func prepareForReuse() {
+        super.prepareForReuse()
         personImageView.image = nil
         nameLabel.text = nil
     }

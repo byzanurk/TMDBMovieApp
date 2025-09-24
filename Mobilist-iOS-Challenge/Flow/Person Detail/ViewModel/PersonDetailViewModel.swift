@@ -9,13 +9,16 @@ import Foundation
 
 final class PersonDetailViewModel {
     
-    var personDetail: PersonDetail?
-    var movies: [Cast] = []
-    var tvShows: [Cast] = []
+    private(set) var personDetail: PersonDetail?
+    private(set) var movies: [Cast] = []
+    private(set) var tvShows: [Cast] = []
+    
+    private let baseURL = Config.APIBaseURL.tmdbBaseURL
+    private let apiKey = Config.tmdbApiKey
+    private let language = "en-US"
     
     // MARK: - Person Detail
     func fetchPersonDetail(id: Int, completion: @escaping () -> Void) {
-        let baseURL = Config.APIBaseURL.tmdbBaseURL
         let path = "/person/\(id)"
         
         NetworkManager.shared.request(
@@ -23,7 +26,7 @@ final class PersonDetailViewModel {
             path: path,
             method: .get,
             headers: nil,
-            parameters: ["api_key": Config.tmdbApiKey, "language": "en-US"],
+            parameters: ["api_key": Config.tmdbApiKey, "language": language],
             responseType: PersonDetail.self
         ) { [weak self] result in
             switch result {
@@ -38,7 +41,6 @@ final class PersonDetailViewModel {
     
     // MARK: - Movie Credits
     func fetchMovieCredits(id: Int, completion: @escaping () -> Void) {
-        let baseURL = Config.APIBaseURL.tmdbBaseURL
         let path = "/person/\(id)/movie_credits"
         
         NetworkManager.shared.request(
@@ -46,7 +48,7 @@ final class PersonDetailViewModel {
             path: path,
             method: .get,
             headers: nil,
-            parameters: ["api_key": Config.tmdbApiKey, "language": "en-US"],
+            parameters: ["api_key": Config.tmdbApiKey, "language": language],
             responseType: MovieCreditsResponse.self
         ) { [weak self] result in
             switch result {
@@ -61,14 +63,14 @@ final class PersonDetailViewModel {
     
     // MARK: - TV Credits
     func fetchTVCredits(id: Int, completion: @escaping () -> Void) {
-        let baseURL = Config.APIBaseURL.tmdbBaseURL
         let path = "/person/\(id)/tv_credits"
+        
         NetworkManager.shared.request(
             baseURL: baseURL,
             path: path,
             method: .get,
             headers: nil,
-            parameters: ["api_key": Config.tmdbApiKey, "language": "en-US"],
+            parameters: ["api_key": Config.tmdbApiKey, "language": language],
             responseType: TVCreditsResponse.self
         ) { [weak self] result in
             switch result {

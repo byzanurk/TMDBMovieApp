@@ -15,7 +15,6 @@ class PersonTVsCell: UICollectionViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
         tvImageView.layer.cornerRadius = 8
         tvImageView.clipsToBounds = true
     }
@@ -33,6 +32,7 @@ class PersonTVsCell: UICollectionViewCell {
     }
     
     override func prepareForReuse() {
+        super.prepareForReuse()
         tvImageView.image = nil
     }
 }

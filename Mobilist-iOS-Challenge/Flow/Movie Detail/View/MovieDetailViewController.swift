@@ -10,6 +10,7 @@ import Kingfisher
 
 class MovieDetailViewController: UIViewController {
 
+    // MARK: - Properties
     var movie: Movie?
     var movieId: Int?
     var youtubeVideos: [YouTubeVideo] = []
@@ -18,6 +19,7 @@ class MovieDetailViewController: UIViewController {
     private let viewModel = MovieDetailViewModel(networkManager: NetworkManager.shared)
     private let spinner = UIActivityIndicatorView(style: .large)
     
+    // MARK: - Outlets
     @IBOutlet private weak var backgroundImageView: UIImageView!
     @IBOutlet private weak var posterImageView: UIImageView!
     @IBOutlet private weak var titleLabel: UILabel!
@@ -28,44 +30,12 @@ class MovieDetailViewController: UIViewController {
     @IBOutlet private weak var filledStarsStackView: UIStackView!
     @IBOutlet private weak var filledStarsWidthConstraint: NSLayoutConstraint!
     
-    
-    
-    
+    // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        youtubeTrailerCollectionView.delegate = self
-        youtubeTrailerCollectionView.dataSource = self
-        youtubeTrailerCollectionView.register(UINib(nibName: "YoutubeTrailerCell", bundle: nil), forCellWithReuseIdentifier: "YoutubeTrailerCell")
-        
-        castCollectionView.delegate = self
-        castCollectionView.dataSource = self
-        castCollectionView.register(UINib(nibName: "CastCell", bundle: nil), forCellWithReuseIdentifier: "CastCell")
-        
-        spinner.center = view.center
-        spinner.hidesWhenStopped = true
-        view.addSubview(spinner)
-        spinner.startAnimating()
-        
-        // movie set edildiyse ui'i hemen yukle
-        if movie != nil {
-            setupUI()
-            loadYoutubeTrailers()
-            loadCast()
-            spinner.stopAnimating()
-        }
-        // eger sadece id geldiyse fetch et
-        else if let id = movieId {
-            viewModel.fetchMovieDetail(id: id) { [weak self] movie in
-                guard let self = self else { return }
-                self.movie = movie
-                DispatchQueue.main.async {
-                    self.setupUI()
-                    self.loadYoutubeTrailers()
-                    self.loadCast()
-                    self.spinner.stopAnimating()
-                }
-            }
-        }
+        setupCollectionViews()
+        setupSpinner()
+        configureInitialState()
     }
     
     override func viewDidLayoutSubviews() {
@@ -75,10 +45,48 @@ class MovieDetailViewController: UIViewController {
         }
     }
 
-    
-    private func setupUI() {
-        guard let movie = movie else { return }
+    // MARK: - Setup
+    private func setupCollectionViews() {
+        youtubeTrailerCollectionView.delegate = self
+        youtubeTrailerCollectionView.dataSource = self
+        youtubeTrailerCollectionView.register(UINib(nibName: "YoutubeTrailerCell", bundle: nil), forCellWithReuseIdentifier: "YoutubeTrailerCell")
         
+        castCollectionView.delegate = self
+        castCollectionView.dataSource = self
+        castCollectionView.register(UINib(nibName: "CastCell", bundle: nil), forCellWithReuseIdentifier: "CastCell")
+    }
+    
+    private func setupSpinner() {
+        spinner.center = view.center
+        spinner.hidesWhenStopped = true
+        view.addSubview(spinner)
+    }
+    
+    private func configureInitialState() {
+        spinner.startAnimating()
+        
+        // movie set edildiyse ui'i hemen yukle
+        if let movie = movie {
+            updateUI(with: movie)
+            loadYoutubeTrailers()
+            loadCast()
+            spinner.stopAnimating()
+        } else if let id = movieId {
+            viewModel.fetchMovieDetail(id: id) { [weak self] movie in
+                guard let self = self, let movie = movie else { return }
+                self.movie = movie
+                DispatchQueue.main.async {
+                    self.updateUI(with: movie)
+                    self.loadYoutubeTrailers()
+                    self.loadCast()
+                    self.spinner.stopAnimating()
+                }
+            }
+        }
+
+    }
+    
+    private func updateUI(with movie: Movie) {
         titleLabel.text = movie.title.isEmpty ? "No Title Available" : movie.title
         titleLabel.numberOfLines = 2
         
@@ -87,7 +95,6 @@ class MovieDetailViewController: UIViewController {
 
         posterImageView.layer.cornerRadius = 8
         posterImageView.clipsToBounds = true
-        
 
                 
         if let posterPath = movie.posterPath, !posterPath.isEmpty {
@@ -96,11 +103,7 @@ class MovieDetailViewController: UIViewController {
             backgroundImageView.kf.setImage(with: url) { [weak self] result in
                 switch result {
                 case .success(_):
-                    let blurEffect = UIBlurEffect(style: .light)
-                    let blurEffectView = UIVisualEffectView(effect: blurEffect)
-                    blurEffectView.frame = self?.backgroundImageView.bounds ?? .zero
-                    blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-                    self?.backgroundImageView.addSubview(blurEffectView)
+                    self?.applyBlurEffect()
                 case .failure(_):
                     break
                 }
@@ -111,6 +114,16 @@ class MovieDetailViewController: UIViewController {
         }
     }
     
+    // helper method
+    private func applyBlurEffect() {
+        let blurEffect = UIBlurEffect(style: .light)
+        let blurEffectView = UIVisualEffectView(effect: blurEffect)
+        blurEffectView.frame = backgroundImageView.bounds
+        blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        backgroundImageView.addSubview(blurEffectView)
+    }
+    
+    // MARK: - Star Rating
     private func updateStarsRating(voteAverage: Double) {
         let ratingOutOfFive = voteAverage / 2.0
         let fillRatio = ratingOutOfFive / 5.0
@@ -126,6 +139,7 @@ class MovieDetailViewController: UIViewController {
         filledStarsStackView.layer.mask = maskLayer
     }
     
+    // MARK: - Data Loading
     private func loadYoutubeTrailers() {
         guard let movieTitle = movie?.title else { return }
         viewModel.fetchYoutubeVideos(for: movieTitle) { [weak self] videos in
@@ -148,9 +162,19 @@ class MovieDetailViewController: UIViewController {
             }
         }
     }
+    
+    // MARK: - Navigation
+    private func navigateToPersonDetail(personId: Int) {
+        let storyboard = UIStoryboard(name: "PersonDetailViewController", bundle: nil)
+        if let personDetailVC = storyboard.instantiateViewController(withIdentifier: "PersonDetailViewController") as? PersonDetailViewController {
+            personDetailVC.personId = personId
+            navigationController?.pushViewController(personDetailVC, animated: true)
+        }
+    }
 
 }
 
+// MARK: - Collection View Extension
 extension MovieDetailViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if collectionView == youtubeTrailerCollectionView {
@@ -200,11 +224,7 @@ extension MovieDetailViewController: UICollectionViewDelegate, UICollectionViewD
                 return
             }
             print("MovieDetailVC: navigating to person id:\(personId)")
-            let storyboard = UIStoryboard(name: "PersonDetailViewController", bundle: nil)
-            if let personDetailVC = storyboard.instantiateViewController(withIdentifier: "PersonDetailViewController") as? PersonDetailViewController {
-                personDetailVC.personId = personId
-                navigationController?.pushViewController(personDetailVC, animated: true)
-            }
+            navigateToPersonDetail(personId: personId)
         }
     }
 }

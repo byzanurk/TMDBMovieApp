@@ -15,13 +15,13 @@ class PersonMoviesCell: UICollectionViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
         movieImageView.layer.cornerRadius = 8
         movieImageView.clipsToBounds = true
     }
     
     func configure(with cast: Cast) {
-        guard let path = cast.posterPath, !path.isEmpty, let url = URL(string: "https://image.tmdb.org/t/p/w500\(path)") else {
+        guard let path = cast.posterPath, !path.isEmpty,
+              let url = URL(string: "https://image.tmdb.org/t/p/w500\(path)") else {
             movieImageView.image = UIImage(systemName: "photo")
             movieImageView.contentMode = .scaleAspectFit
             movieImageView.tintColor = .lightGray
@@ -31,6 +31,7 @@ class PersonMoviesCell: UICollectionViewCell {
     }
     
     override func prepareForReuse() {
+        super.prepareForReuse()
         movieImageView.image = nil
     }
 }
