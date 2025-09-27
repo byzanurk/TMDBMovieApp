@@ -7,54 +7,65 @@
 
 import Foundation
 
-class MainViewModel {
+protocol MainViewModelProtocol {
+    var movies: [Movie] { get set }
+    var delegate: MainViewModelOutput? { get set }
+    func fetchPopularMovies()
+    func searchMovies(query: String)
+}
+
+protocol MainViewModelOutput: AnyObject {
+    func popularMovieSuccess()
+    func searchSuccess()
+    func showError(message: String)
+}
+
+final class MainViewModel: MainViewModelProtocol {
     
     var movies: [Movie] = []
+    weak var delegate: MainViewModelOutput?
+    
     private var allPopularMovies: [Movie] = []
     private var currentPage = 1
     private var totalPages = 1
     private var isFetching = false
+    private let service: NetworkRouterProtocol
     
-    func fetchPopularMovies(completion: @escaping (Bool) -> Void) {
+    init(service: NetworkRouterProtocol) {
+        self.service = service
+    }
+    
+    func fetchPopularMovies() {
         guard !isFetching else { return }
-        guard currentPage <= totalPages else { completion(false); return }
+        guard currentPage <= totalPages else {  return }
 
         isFetching = true
-
-        let path = "\(NetworkPaths.popularMovies.rawValue)?api_key=\(Config.tmdbApiKey)&language=en-US&page=\(currentPage)"
-        NetworkManager.shared.request(
-            baseURL: Config.APIBaseURL.tmdbBaseURL,
-            path: path,
-            method: .get,
-            headers: nil,
-            parameters: nil,
-            responseType: MovieResponse.self
-        ) { [weak self] result in
+        
+        service.fetchPopularMovies(currentPage: self.currentPage) { [weak self] result in
             guard let self = self else { return }
             self.isFetching = false
-
+            
             switch result {
             case .success(let response):
                 self.movies.append(contentsOf: response.results)
                 self.allPopularMovies.append(contentsOf: response.results)
                 self.totalPages = response.totalPages
                 self.currentPage += 1
-                completion(true)
+                self.delegate?.popularMovieSuccess()
             case .failure(let error):
+                self.delegate?.showError(message: error.localizedDescription)
                 print("Error fetching popular movies:", error)
-                completion(false)
             }
         }
     }
     
-    func searchMovies(query: String, completion: @escaping (Bool) -> Void) {
+    func searchMovies(query: String) {
         guard !query.isEmpty else {
             self.movies = self.allPopularMovies
-            completion(true)
+            self.delegate?.searchSuccess()
             return
         }
         self.movies = self.allPopularMovies.filter { $0.title.lowercased().contains(query.lowercased()) }
-        completion(true)
+        self.delegate?.searchSuccess()
     }
-    
 }

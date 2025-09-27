@@ -24,27 +24,25 @@ enum NetworkError: Error {
 
 protocol NetworkManagerProtocol {
     func request<T: Decodable>(
-        baseURL: String,
         path: String,
+        responseType: T.Type,
+        baseURL: String,
         method: HTTPMethod,
         headers: [String: String]?,
         parameters: [String: Any]?,
-        responseType: T.Type,
         completion: @escaping (Result<T, NetworkError>) -> Void
     )
 }
 
 final class NetworkManager: NetworkManagerProtocol {
-    static let shared = NetworkManager()
-    private init() { }
 
     func request<T: Decodable>(
-        baseURL: String,
         path: String,
-        method: HTTPMethod,
-        headers: [String: String]?,
-        parameters: [String: Any]?,
         responseType: T.Type,
+        baseURL: String = Config.APIBaseURL.tmdbBaseURL,
+        method: HTTPMethod = .get,
+        headers: [String: String]? = nil,
+        parameters: [String: Any]? = nil,
         completion: @escaping (Result<T, NetworkError>) -> Void
     ) {
         var urlString = baseURL + path

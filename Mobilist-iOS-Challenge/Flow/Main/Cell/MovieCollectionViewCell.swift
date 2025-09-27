@@ -25,13 +25,6 @@ class MovieCollectionViewCell: UICollectionViewCell {
         containerView.layer.shadowOpacity = 0.15
         containerView.layer.shadowRadius = 4
         containerView.layer.shadowOffset = CGSize(width: 0, height: 2)
-        
-        posterImageView.layer.cornerRadius = 8
-        posterImageView.clipsToBounds = true
-        
-        titleLabel.numberOfLines = 2
-        overviewLabel.numberOfLines = 5
-        titleLabel.textAlignment = .center
     }
     
     override func prepareForReuse() {

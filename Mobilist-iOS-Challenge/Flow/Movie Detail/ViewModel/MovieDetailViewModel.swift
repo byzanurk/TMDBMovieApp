@@ -22,65 +22,65 @@ class MovieDetailViewModel {
         let query = (movieTitle + " trailer").addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? movieTitle
         let path = "/search?part=snippet&q=\(query)&key=\(apiKey)&maxResults=5&type=video"
         
-        networkManager.request(
-            baseURL: baseURL,
-            path: path,
-            method: .get,
-            headers: nil,
-            parameters: nil,
-            responseType: YouTubeSearchResponse.self
-        ) { result in
-            switch result {
-            case .success(let response):
-                completion(response.items)
-            case .failure(let error):
-                print("MovieDetailViewModel-FetchYoutubeVideos error:", error)
-                completion([])
-            }
-        }
+//        networkManager.request(
+//            baseURL: baseURL,
+//            path: path,
+//            method: .get,
+//            headers: nil,
+//            parameters: nil,
+//            responseType: YouTubeSearchResponse.self
+//        ) { result in
+//            switch result {
+//            case .success(let response):
+//                completion(response.items)
+//            case .failure(let error):
+//                print("MovieDetailViewModel-FetchYoutubeVideos error:", error)
+//                completion([])
+//            }
+//        }
     }
     
     // MARK: - Movie Cast
     func fetchMovieCast(movieId: Int, completion: @escaping ([Cast]) -> Void) {
         let path = "/movie/\(movieId)/credits?api_key=\(Config.tmdbApiKey)"
         
-        networkManager.request(
-            baseURL: Config.APIBaseURL.tmdbBaseURL,
-            path: path,
-            method: .get,
-            headers: nil,
-            parameters: nil,
-            responseType: MovieCreditsResponse.self
-        ) { result in
-            switch result {
-            case .success(let response):
-                completion(response.cast)
-            case .failure(let error):
-                print("error fetching cast:", error)
-                completion([])
-            }
-        }
+//        networkManager.request(
+//            baseURL: Config.APIBaseURL.tmdbBaseURL,
+//            path: path,
+//            method: .get,
+//            headers: nil,
+//            parameters: nil,
+//            responseType: MovieCreditsResponse.self
+//        ) { result in
+//            switch result {
+//            case .success(let response):
+//                completion(response.cast)
+//            case .failure(let error):
+//                print("error fetching cast:", error)
+//                completion([])
+//            }
+//        }
     }
 
     // MARK: - Movie Detail
     func fetchMovieDetail(id: Int, completion: @escaping (Movie?) -> Void) {
         let path = "/movie/\(id)"
-        networkManager.request(
-            baseURL: Config.APIBaseURL.tmdbBaseURL,
-            path: path,
-            method: .get,
-            headers: nil,
-            parameters: ["api_key": Config.tmdbApiKey, "language": "en-US"],
-            responseType: Movie.self
-        ) { result in
-            switch result {
-            case .success(let movie):
-                completion(movie)
-            case .failure(let error):
-                print("Error fetching movie detail:", error)
-                completion(nil)
-            }
-        }
+//        networkManager.request(
+//            baseURL: Config.APIBaseURL.tmdbBaseURL,
+//            path: path,
+//            method: .get,
+//            headers: nil,
+//            parameters: ["api_key": Config.tmdbApiKey, "language": "en-US"],
+//            responseType: Movie.self
+//        ) { result in
+//            switch result {
+//            case .success(let movie):
+//                completion(movie)
+//            case .failure(let error):
+//                print("Error fetching movie detail:", error)
+//                completion(nil)
+//            }
+//        }
     }
     
 }

@@ -16,7 +16,7 @@ class MovieDetailViewController: UIViewController {
     var youtubeVideos: [YouTubeVideo] = []
     var cast: [Cast] = []
     
-    private let viewModel = MovieDetailViewModel(networkManager: NetworkManager.shared)
+    private let viewModel = MovieDetailViewModel(networkManager: NetworkManager())
     private let spinner = UIActivityIndicatorView(style: .large)
     
     // MARK: - Outlets

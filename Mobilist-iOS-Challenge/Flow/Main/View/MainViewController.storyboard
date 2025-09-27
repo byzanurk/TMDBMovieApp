@@ -44,16 +44,16 @@
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="HFH-GY-vF2" firstAttribute="top" secondItem="txy-Ei-ugs" secondAttribute="bottom" constant="8" id="45p-Qa-XZE"/>
-                            <constraint firstItem="HFH-GY-vF2" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="16" id="8Li-KA-dE5"/>
-                            <constraint firstAttribute="bottom" secondItem="FdV-dp-QgA" secondAttribute="bottom" id="Ezy-Yl-3bY"/>
-                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="FdV-dp-QgA" secondAttribute="trailing" id="Ld5-Cl-XWA"/>
-                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="HFH-GY-vF2" secondAttribute="trailing" constant="16" id="bqL-kA-i8M"/>
-                            <constraint firstItem="FdV-dp-QgA" firstAttribute="top" secondItem="HFH-GY-vF2" secondAttribute="bottom" id="cJm-jj-tNb"/>
-                            <constraint firstItem="txy-Ei-ugs" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="16" id="d5r-Mg-nKc"/>
-                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="txy-Ei-ugs" secondAttribute="trailing" constant="16" id="duz-eJ-z1D"/>
-                            <constraint firstItem="txy-Ei-ugs" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" id="ju5-1B-YXa"/>
-                            <constraint firstItem="FdV-dp-QgA" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="omX-Cr-jlx"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="HFH-GY-vF2" secondAttribute="trailing" constant="16" id="93o-ZZ-M8F"/>
+                            <constraint firstItem="HFH-GY-vF2" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="16" id="PsM-Io-abi"/>
+                            <constraint firstItem="FdV-dp-QgA" firstAttribute="top" secondItem="HFH-GY-vF2" secondAttribute="bottom" id="VY2-Nj-hBH"/>
+                            <constraint firstAttribute="bottom" secondItem="FdV-dp-QgA" secondAttribute="bottom" id="YOq-HF-xWO"/>
+                            <constraint firstItem="txy-Ei-ugs" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" id="dfm-6O-EeJ"/>
+                            <constraint firstItem="FdV-dp-QgA" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="eDM-LF-JY8"/>
+                            <constraint firstItem="txy-Ei-ugs" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="16" id="jgY-sg-4Ug"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="txy-Ei-ugs" secondAttribute="trailing" constant="16" id="ohM-Py-ivZ"/>
+                            <constraint firstItem="HFH-GY-vF2" firstAttribute="top" secondItem="txy-Ei-ugs" secondAttribute="bottom" constant="8" id="rqO-2t-7EF"/>
+                            <constraint firstItem="FdV-dp-QgA" firstAttribute="trailing" secondItem="vDu-zF-Fre" secondAttribute="trailing" id="yce-EH-P9p"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="xlZ-bN-dme"/>

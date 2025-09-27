@@ -15,13 +15,15 @@ final class MainViewController: UIViewController {
     @IBOutlet private weak var collectionView: UICollectionView!
     
     // MARK: - Properties
-    let viewModel = MainViewModel()
+    var viewModel: MainViewModelProtocol!
+    var coordinator: Coordinator!
     
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
         setupCollectionView()
+        viewModel.delegate = self
         fetchInitialMovies()
     }
     
@@ -39,13 +41,7 @@ final class MainViewController: UIViewController {
     // MARK: - Data Fetching
     private func fetchInitialMovies() {
         let startIndex = viewModel.movies.count
-        viewModel.fetchPopularMovies { [weak self] success in
-            if success, let self = self {
-                let endIndex = self.viewModel.movies.count
-                let indexPaths = (startIndex..<endIndex).map { IndexPath(row: $0, section: 0) }
-                self.collectionView.insertItems(at: indexPaths)
-            }
-        }
+        viewModel.fetchPopularMovies()
     }
     
     // MARK: - Scroll Handling
@@ -55,11 +51,7 @@ final class MainViewController: UIViewController {
         let height = scrollView.frame.size.height
 
         if offsetY > contentHeight - height - 100 {
-            viewModel.fetchPopularMovies { [weak self] success in
-                if success {
-                    self?.collectionView.reloadData()
-                }
-            }
+            viewModel.fetchPopularMovies()
         }
     }
 
@@ -89,22 +81,34 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
         return cell
     }
     
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let width = collectionView.frame.width - 12
-        return CGSize(width: width, height: 140)
-    }
-    
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let selectedMovie = viewModel.movies[indexPath.row]
         navigateToDetail(for: selectedMovie)
     }
+
 }
 
 // MARK: - Search Bar Extension
 extension MainViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        viewModel.searchMovies(query: searchText) { [weak self] _ in
-            self?.collectionView.reloadData()
+        viewModel.searchMovies(query: searchText)
+    }
+}
+
+extension MainViewController: MainViewModelOutput {
+    func popularMovieSuccess() {
+        DispatchQueue.main.async {
+            self.collectionView.reloadData()
         }
+    }
+    
+    func searchSuccess() {
+        DispatchQueue.main.async {
+            self.collectionView.reloadData()
+        }
+    }
+    
+    func showError(message: String) {
+        print(message)
     }
 }
