@@ -139,7 +139,7 @@ class PersonDetailViewController: UIViewController {
     private func navigateToMovieDetail(with movieId: Int) {
         let storyboard = UIStoryboard(name: "MovieDetailViewController", bundle: nil)
         if let detailVC = storyboard.instantiateViewController(identifier: "MovieDetailViewController") as? MovieDetailViewController {
-            detailVC.movieId = movieId
+//            detailVC.movieId = movieId
             navigationController?.pushViewController(detailVC, animated: true)
         }
     }

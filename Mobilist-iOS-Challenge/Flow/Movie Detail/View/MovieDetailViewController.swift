@@ -10,14 +10,8 @@ import Kingfisher
 
 class MovieDetailViewController: UIViewController {
 
-    // MARK: - Properties
-    var movie: Movie?
-    var movieId: Int?
-    var youtubeVideos: [YouTubeVideo] = []
-    var cast: [Cast] = []
-    
-    private let viewModel = MovieDetailViewModel(networkManager: NetworkManager())
-    private let spinner = UIActivityIndicatorView(style: .large)
+    var viewModel: MovieDetailViewModelProtocol!
+    var coordinator: Coordinator!
     
     // MARK: - Outlets
     @IBOutlet private weak var backgroundImageView: UIImageView!
@@ -33,16 +27,14 @@ class MovieDetailViewController: UIViewController {
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        viewModel.delegate = self
         setupCollectionViews()
-        setupSpinner()
         configureInitialState()
     }
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        if let movie = movie {
-            updateStarsRating(voteAverage: movie.voteAverage)
-        }
+        updateStarsRating(voteAverage: viewModel.movie.voteAverage)
     }
 
     // MARK: - Setup
@@ -55,35 +47,12 @@ class MovieDetailViewController: UIViewController {
         castCollectionView.dataSource = self
         castCollectionView.register(UINib(nibName: "CastCell", bundle: nil), forCellWithReuseIdentifier: "CastCell")
     }
-    
-    private func setupSpinner() {
-        spinner.center = view.center
-        spinner.hidesWhenStopped = true
-        view.addSubview(spinner)
-    }
-    
-    private func configureInitialState() {
-        spinner.startAnimating()
         
-        // movie set edildiyse ui'i hemen yukle
-        if let movie = movie {
-            updateUI(with: movie)
-            loadYoutubeTrailers()
-            loadCast()
-            spinner.stopAnimating()
-        } else if let id = movieId {
-            viewModel.fetchMovieDetail(id: id) { [weak self] movie in
-                guard let self = self, let movie = movie else { return }
-                self.movie = movie
-                DispatchQueue.main.async {
-                    self.updateUI(with: movie)
-                    self.loadYoutubeTrailers()
-                    self.loadCast()
-                    self.spinner.stopAnimating()
-                }
-            }
-        }
-
+    private func configureInitialState() {
+        updateUI(with: viewModel.movie)
+        viewModel.fetchYoutubeVideos()
+        viewModel.fetchMovieCast()
+        
     }
     
     private func updateUI(with movie: Movie) {
@@ -139,29 +108,6 @@ class MovieDetailViewController: UIViewController {
         filledStarsStackView.layer.mask = maskLayer
     }
     
-    // MARK: - Data Loading
-    private func loadYoutubeTrailers() {
-        guard let movieTitle = movie?.title else { return }
-        viewModel.fetchYoutubeVideos(for: movieTitle) { [weak self] videos in
-            guard let self = self else { return }
-            self.youtubeVideos = videos
-            DispatchQueue.main.async {
-                self.youtubeTrailerCollectionView.reloadData()
-            }
-        }
-    }
-    
-    private func loadCast() {
-        guard let movieId = movie?.id else { return }
-        viewModel.fetchMovieCast(movieId: movieId) { [weak self] castArray in
-            print("Fetched cast:", castArray)
-            guard let self = self else { return }
-            self.cast = castArray
-            DispatchQueue.main.async {
-                self.castCollectionView.reloadData()
-            }
-        }
-    }
     
     // MARK: - Navigation
     private func navigateToPersonDetail(personId: Int) {
@@ -178,9 +124,9 @@ class MovieDetailViewController: UIViewController {
 extension MovieDetailViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if collectionView == youtubeTrailerCollectionView {
-            return youtubeVideos.count
+            return viewModel.youtubeVideos.count
         } else if collectionView == castCollectionView {
-            return min(cast.count, 40)
+            return min(viewModel.cast.count, 40)
         }
         return 0
     }
@@ -200,12 +146,12 @@ extension MovieDetailViewController: UICollectionViewDelegate, UICollectionViewD
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if collectionView == youtubeTrailerCollectionView {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "YoutubeTrailerCell", for: indexPath) as! YoutubeTrailerCell
-            let video = youtubeVideos[indexPath.item]
+            let video = viewModel.youtubeVideos[indexPath.item]
             cell.configure(with: video)
             return cell
         } else {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CastCell", for: indexPath) as! CastCell
-            let actor = cast[indexPath.item]
+            let actor = viewModel.cast[indexPath.item]
             cell.configure(with: actor)
             return cell
         }
@@ -213,12 +159,12 @@ extension MovieDetailViewController: UICollectionViewDelegate, UICollectionViewD
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if collectionView == youtubeTrailerCollectionView {
-            let video = youtubeVideos[indexPath.item]
+            let video = viewModel.youtubeVideos[indexPath.item]
             if let url = video.videoURL {
                 UIApplication.shared.open(url)
             }
         } else if collectionView == castCollectionView {
-            let selectedCast = cast[indexPath.item]
+            let selectedCast = viewModel.cast[indexPath.item]
             guard let personId = selectedCast.id else {
                 print("MovieDetailVC: selected cast has no person id. cast entry:\(selectedCast)")
                 return
@@ -229,3 +175,26 @@ extension MovieDetailViewController: UICollectionViewDelegate, UICollectionViewD
     }
 }
 
+extension MovieDetailViewController: MovieDetailViewModelOutput {
+    func didFetchMovieCast() {
+        DispatchQueue.main.async {
+            self.castCollectionView.reloadData()
+        }
+
+    }
+    
+    func didFetchMovieDetail() {
+        updateUI(with: viewModel.movie)
+    }
+    
+    func didFetchYoutubeVideos() {
+        DispatchQueue.main.async {
+            self.youtubeTrailerCollectionView.reloadData()
+        }
+    }
+    
+    func showError(message: String) {
+        print("error: \(message)")
+    }
+    
+}

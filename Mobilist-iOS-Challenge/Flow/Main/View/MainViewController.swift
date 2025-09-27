@@ -57,11 +57,8 @@ final class MainViewController: UIViewController {
 
     // MARK: - Navigation
     private func navigateToDetail(for movie: Movie) {
-        let storyboard = UIStoryboard(name: "MovieDetailViewController", bundle: nil)
-        if let detailVC = storyboard.instantiateViewController(identifier: "MovieDetailViewController") as? MovieDetailViewController {
-            detailVC.movie = movie
-            navigationController?.pushViewController(detailVC, animated: true)
-        }
+        let vc = MovieDetailViewBuilder.build(coordinator: self.coordinator, movie: movie)
+        self.coordinator.eventOccurred(with: vc)
     }
     
 }
