@@ -52,7 +52,6 @@ class MovieDetailViewController: UIViewController {
         updateUI(with: viewModel.movie)
         viewModel.fetchYoutubeVideos()
         viewModel.fetchMovieCast()
-        
     }
     
     private func updateUI(with movie: Movie) {
@@ -67,55 +66,26 @@ class MovieDetailViewController: UIViewController {
 
                 
         if let posterPath = movie.posterPath, !posterPath.isEmpty {
-            let url = URL(string: "https://image.tmdb.org/t/p/w500\(posterPath)")
-            posterImageView.kf.setImage(with: url)
-            backgroundImageView.kf.setImage(with: url) { [weak self] result in
-                switch result {
-                case .success(_):
-                    self?.applyBlurEffect()
-                case .failure(_):
-                    break
-                }
-            }
+            posterImageView.setImageFromPath(posterPath, systemImageName: "photo")
+            backgroundImageView.setImageFromPath(posterPath)
+            backgroundImageView.applyBlurEffect()
         } else {
             posterImageView.image = UIImage(systemName: "photo")
-            backgroundImageView.image = nil
+            backgroundImageView.image = UIImage(systemName: "photo")
         }
-    }
-    
-    // helper method
-    private func applyBlurEffect() {
-        let blurEffect = UIBlurEffect(style: .light)
-        let blurEffectView = UIVisualEffectView(effect: blurEffect)
-        blurEffectView.frame = backgroundImageView.bounds
-        blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        backgroundImageView.addSubview(blurEffectView)
     }
     
     // MARK: - Star Rating
     private func updateStarsRating(voteAverage: Double) {
-        let ratingOutOfFive = voteAverage / 2.0
-        let fillRatio = ratingOutOfFive / 5.0
-        let totalWidth = emptyStarsStackView.frame.width
-        
-        let maskLayer = CALayer()
-        maskLayer.frame = CGRect(x: 0,
-                                 y: 0,
-                                 width: totalWidth * CGFloat(fillRatio),
-                                 height: emptyStarsStackView.bounds.height)
-        maskLayer.backgroundColor = UIColor.black.cgColor
-        
-        filledStarsStackView.layer.mask = maskLayer
+        let ratio = CGFloat(voteAverage / 10.0)
+        filledStarsStackView.setFillRatio(ratio)
     }
     
     
     // MARK: - Navigation
     private func navigateToPersonDetail(personId: Int) {
-        let storyboard = UIStoryboard(name: "PersonDetailViewController", bundle: nil)
-        if let personDetailVC = storyboard.instantiateViewController(withIdentifier: "PersonDetailViewController") as? PersonDetailViewController {
-            personDetailVC.personId = personId
-            navigationController?.pushViewController(personDetailVC, animated: true)
-        }
+        let vc = PersonDetailViewBuilder.build(coordinator: self.coordinator, personId: personId)
+        self.coordinator.eventOccurred(with: vc)
     }
 
 }
@@ -180,7 +150,6 @@ extension MovieDetailViewController: MovieDetailViewModelOutput {
         DispatchQueue.main.async {
             self.castCollectionView.reloadData()
         }
-
     }
     
     func didFetchMovieDetail() {
@@ -194,7 +163,7 @@ extension MovieDetailViewController: MovieDetailViewModelOutput {
     }
     
     func showError(message: String) {
-        print("error: \(message)")
+        print("Error: \(message)")
     }
     
 }

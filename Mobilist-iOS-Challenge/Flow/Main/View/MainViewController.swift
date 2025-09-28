@@ -21,17 +21,13 @@ final class MainViewController: UIViewController {
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupUI()
-        setupCollectionView()
+        searchBar.delegate = self
         viewModel.delegate = self
+        setupCollectionView()
         fetchInitialMovies()
     }
     
     // MARK: - Setup
-    private func setupUI() {
-        searchBar.delegate = self
-    }
-    
     private func setupCollectionView() {
         collectionView.delegate = self
         collectionView.dataSource = self
@@ -40,7 +36,6 @@ final class MainViewController: UIViewController {
     
     // MARK: - Data Fetching
     private func fetchInitialMovies() {
-        let startIndex = viewModel.movies.count
         viewModel.fetchPopularMovies()
     }
     
