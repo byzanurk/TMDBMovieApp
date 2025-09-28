@@ -10,7 +10,9 @@ protocol NetworkRouterProtocol {
     func fetchYoutubeVideos(for movieTitle: String, completion: @escaping (Result<YouTubeSearchResponse, NetworkError>) -> Void)
     func fetchMovieCast(for movieId: Int, completion: @escaping (Result<MovieCreditsResponse, NetworkError>) -> Void)
     func fetchMovieDetail(for id: Int, completion: @escaping (Result<Movie, NetworkError>) -> Void)
-
+    func fetchPersonDetail(id: Int, completion: @escaping (Result<PersonDetail, NetworkError>) -> Void)
+    func fetchMovieCredits(id: Int, completion: @escaping (Result<MovieCreditsResponse, NetworkError>) -> Void)
+    func fetchTVCredits(id: Int, completion: @escaping (Result<TVCreditsResponse, NetworkError>) -> Void)
 }
 
 final class NetworkRouter: NetworkRouterProtocol {
@@ -54,12 +56,67 @@ final class NetworkRouter: NetworkRouterProtocol {
     func fetchMovieCast(for movieId: Int, completion: @escaping (Result<MovieCreditsResponse, NetworkError>) -> Void) {
         let path = "/movie/\(movieId)/credits?api_key=\(Config.tmdbApiKey)"
 
-        service.request(path: path, responseType: MovieCreditsResponse.self, baseURL: Config.APIBaseURL.tmdbBaseURL, method: .get, headers: nil, parameters: nil, completion: completion)
+        service.request(
+            path: path,
+            responseType: MovieCreditsResponse.self,
+            baseURL: Config.APIBaseURL.tmdbBaseURL,
+            method: .get,
+            headers: nil,
+            parameters: nil,
+            completion: completion)
     }
     
     func fetchMovieDetail(for id: Int, completion: @escaping (Result<Movie, NetworkError>) -> Void) {
         let path = "/movie/\(id)"
 
-        service.request(path: path, responseType: Movie.self, baseURL: Config.APIBaseURL.tmdbBaseURL, method: .get, headers: nil, parameters: nil, completion: completion)
+        service.request(
+            path: path,
+            responseType: Movie.self,
+            baseURL: Config.APIBaseURL.tmdbBaseURL,
+            method: .get,
+            headers: nil,
+            parameters: nil,
+            completion: completion)
     }
+    
+    // MARK: - Person Detail
+    func fetchPersonDetail(id: Int, completion: @escaping (Result<PersonDetail, NetworkError>) -> Void) {
+        let path = "/person/\(id)?api_key=\(Config.tmdbApiKey)&language=en-US"
+
+        service.request(
+            path: path,
+            responseType: PersonDetail.self,
+            baseURL: Config.APIBaseURL.tmdbBaseURL,
+            method: .get,
+            headers: nil,
+            parameters: nil,
+            completion: completion)
+    }
+    
+    func fetchMovieCredits(id: Int, completion: @escaping (Result<MovieCreditsResponse, NetworkError>) -> Void) {
+        let path = "/person/\(id)/movie_credits?api_key=\(Config.tmdbApiKey)&language=en-US"
+        
+        service.request(
+            path: path,
+            responseType: MovieCreditsResponse.self,
+            baseURL: Config.APIBaseURL.tmdbBaseURL,
+            method: .get,
+            headers: nil,
+            parameters: nil,
+            completion: completion)
+    }
+    
+    func fetchTVCredits(id: Int, completion: @escaping (Result<TVCreditsResponse, NetworkError>) -> Void) {
+        let path = "/person/\(id)/tv_credits?api_key=\(Config.tmdbApiKey)&language=en-US"
+
+        service.request(
+            path: path,
+            responseType: TVCreditsResponse.self,
+            baseURL: Config.APIBaseURL.tmdbBaseURL,
+            method: .get,
+            headers: nil,
+            parameters: nil,
+            completion: completion)
+    }
+    
 }
