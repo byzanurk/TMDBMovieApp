@@ -11,8 +11,7 @@ import UIKit
 struct PersonDetailViewBuilder {
     static func build(coordinator: Coordinator, personId: Int) -> UIViewController {
         let service: NetworkRouterProtocol = NetworkRouter()
-        let dummyPerson = PersonDetail(id: personId, name: "", knownForDepartment: "", biography: "", profilePath: nil)
-        let viewModel = PersonDetailViewModel(personDetail: dummyPerson, movies: [], tvShows: [], movie: [], service: service)
+        let viewModel = PersonDetailViewModel(personId: personId, service: service)
         let storyboard = UIStoryboard(name: "PersonDetailViewController", bundle: nil)
         guard let personDetailVC = storyboard.instantiateViewController(withIdentifier: "PersonDetailViewController") as? PersonDetailViewController else { return UIViewController() }
         

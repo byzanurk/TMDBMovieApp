@@ -9,7 +9,7 @@ import Foundation
 
 protocol PersonDetailViewModelProtocol {
     var delegate: PersonDetailViewModelOutput? { get set }
-    var personDetail: PersonDetail { get set }
+    var personDetail: PersonDetail? { get set }
     var movies: [Cast] { get set }
     var tvShows: [Cast] { get set }
     var movie: [Movie] { get set }
@@ -29,35 +29,25 @@ protocol PersonDetailViewModelOutput: AnyObject {
 final class PersonDetailViewModel: PersonDetailViewModelProtocol {
     
     // MARK: - Properties
-    var personDetail: PersonDetail
-    var movies: [Cast]
-    var tvShows: [Cast]
-    var movie: [Movie]
-    var personId: Int?
+    var personDetail: PersonDetail?
+    var movies: [Cast] = []
+    var tvShows: [Cast] = []
+    var movie: [Movie] = []
+    var personId: Int
     
     var delegate: PersonDetailViewModelOutput?
     private let service: NetworkRouterProtocol
     
     init(
-        personDetail: PersonDetail,
-        movies: [Cast],
-        tvShows: [Cast],
-        movie: [Movie],
-        personId: Int? = nil,
-        delegate: PersonDetailViewModelOutput? = nil,
-        service: NetworkRouterProtocol)
-    {
-        self.personDetail = personDetail
-        self.movies = movies
-        self.tvShows = tvShows
-        self.movie = movie
+        personId: Int,
+        service: NetworkRouterProtocol
+    ) {
         self.personId = personId
-        self.delegate = delegate
         self.service = service
     }
     
     func fetchPersonDetail() {
-        service.fetchPersonDetail(id: personDetail.id) { [weak self] result in
+        service.fetchPersonDetail(id: personId) { [weak self] result in
             switch result {
             case .success(let success):
                 self?.personDetail = success
@@ -69,7 +59,7 @@ final class PersonDetailViewModel: PersonDetailViewModelProtocol {
     }
     
     func fetchMovieCredits() {
-        service.fetchMovieCredits(id: personDetail.id) { [weak self] result in
+        service.fetchMovieCredits(id: personId) { [weak self] result in
             switch result {
             case .success(let success):
                 self?.movies = success.cast
@@ -81,7 +71,7 @@ final class PersonDetailViewModel: PersonDetailViewModelProtocol {
     }
     
     func fetchTVCredits() {
-        service.fetchTVCredits(id: personDetail.id) { [weak self] result in
+        service.fetchTVCredits(id: personId) { [weak self] result in
             switch result {
             case .success(let success):
                 self?.tvShows = success.cast

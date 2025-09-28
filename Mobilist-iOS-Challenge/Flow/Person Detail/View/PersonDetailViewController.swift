@@ -49,7 +49,8 @@ class PersonDetailViewController: UIViewController {
     }
     
     // MARK: - UI Update
-    private func updateUI(with detail: PersonDetail) {
+    private func updateUI(with detail: PersonDetail?) {
+        guard let detail = detail else { return }
         nameLabel.text = detail.name.isEmpty ? "Name not available.." : detail.name
         
         jobLabel.text = detail.knownForDepartment.isEmpty ? "Job info not available.." : detail.knownForDepartment
