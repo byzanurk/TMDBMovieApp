@@ -81,13 +81,6 @@ class MovieDetailViewController: UIViewController {
         filledStarsStackView.setFillRatio(ratio)
     }
     
-    
-    // MARK: - Navigation
-    private func navigateToPersonDetail(personId: Int) {
-        let vc = PersonDetailViewBuilder.build(coordinator: self.coordinator, personId: personId)
-        self.coordinator.eventOccurred(with: vc)
-    }
-
 }
 
 // MARK: - Collection View Extension
@@ -140,7 +133,8 @@ extension MovieDetailViewController: UICollectionViewDelegate, UICollectionViewD
                 return
             }
             print("MovieDetailVC: navigating to person id:\(personId)")
-            navigateToPersonDetail(personId: personId)
+            let vc = PersonDetailViewBuilder.build(coordinator: self.coordinator, personId: personId)
+            navigate(to: vc, coordinator: coordinator)
         }
     }
 }

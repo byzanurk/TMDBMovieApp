@@ -71,11 +71,6 @@ class PersonDetailViewController: UIViewController {
             
     }
 
-    // MARK: - Navigation
-    private func navigateToMovieDetail(for movie: Movie) {
-        let vc = MovieDetailViewBuilder.build(coordinator: self.coordinator, movie: movie)
-        self.coordinator.eventOccurred(with: vc)
-    }
 }
 
 extension PersonDetailViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
@@ -113,7 +108,8 @@ extension PersonDetailViewController: UICollectionViewDelegate, UICollectionView
                 posterPath: cast.posterPath,
                 voteAverage: 0.0
             )
-            navigateToMovieDetail(for: movie)
+            let vc = MovieDetailViewBuilder.build(coordinator: self.coordinator, movie: movie)
+            navigate(to: vc, coordinator: coordinator)
         }
     }
     

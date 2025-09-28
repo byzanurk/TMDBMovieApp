@@ -49,12 +49,6 @@ final class MainViewController: UIViewController {
             viewModel.fetchPopularMovies()
         }
     }
-
-    // MARK: - Navigation
-    private func navigateToDetail(for movie: Movie) {
-        let vc = MovieDetailViewBuilder.build(coordinator: self.coordinator, movie: movie)
-        self.coordinator.eventOccurred(with: vc)
-    }
     
 }
 
@@ -75,7 +69,8 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let selectedMovie = viewModel.movies[indexPath.row]
-        navigateToDetail(for: selectedMovie)
+        let vc = MovieDetailViewBuilder.build(coordinator: self.coordinator, movie: selectedMovie)
+        navigate(to: vc, coordinator: coordinator)
     }
 
 }
