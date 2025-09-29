@@ -77,21 +77,21 @@ class PersonDetailViewController: UIViewController {
 extension PersonDetailViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if collectionView == movieCollectionView {
-            return viewModel.movies.count
+            return viewModel.movies?.cast.count ?? 0
         } else {
-            return viewModel.tvShows.count
+            return viewModel.tvShows?.cast.count ?? 0
         }
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if collectionView == movieCollectionView {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PersonMoviesCell", for: indexPath) as! PersonMoviesCell
-            let cast = viewModel.movies[indexPath.item]
+            guard let cast = viewModel.movies?.cast[indexPath.item] else { return UICollectionViewCell() }
             cell.configure(with: cast)
             return cell
         } else {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PersonTVsCell", for: indexPath) as! PersonTVsCell
-            let tvShow = viewModel.tvShows[indexPath.item]
+            guard let tvShow = viewModel.tvShows?.cast[indexPath.item] else { return UICollectionViewCell() }
             cell.configure(with: tvShow)
             return cell
         }
@@ -99,14 +99,14 @@ extension PersonDetailViewController: UICollectionViewDelegate, UICollectionView
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if collectionView == movieCollectionView {
-            let cast = viewModel.movies[indexPath.item]
-            guard let id = cast.id else { return }
-            // cast -> movie - for now !!!!!!!!!
+            let cast = viewModel.movies?.cast[indexPath.item]
+            guard let id = cast?.id else { return }
+            // cast -> movie - BURAYA BAKILACAK
             let movie = Movie(
                 id: id,
-                title: cast.title ?? "",
+                title: cast?.title ?? "",
                 overview: "",
-                posterPath: cast.posterPath,
+                posterPath: cast?.posterPath,
                 voteAverage: 0.0
             )
             let vc = MovieDetailViewBuilder.build(coordinator: self.coordinator, movie: movie)

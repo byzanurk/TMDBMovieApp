@@ -47,9 +47,10 @@ final class MainViewModel: MainViewModelProtocol {
             
             switch result {
             case .success(let response):
-                self.movies.append(contentsOf: response.results)
-                self.allPopularMovies.append(contentsOf: response.results)
-                self.totalPages = response.totalPages
+                guard let results = response.results else { return }
+                self.movies.append(contentsOf: results)
+                self.allPopularMovies.append(contentsOf: results)
+                self.totalPages = response.totalPages ?? 0
                 self.currentPage += 1
                 self.delegate?.popularMovieSuccess()
             case .failure(let error):
@@ -65,7 +66,10 @@ final class MainViewModel: MainViewModelProtocol {
             self.delegate?.searchSuccess()
             return
         }
-        self.movies = self.allPopularMovies.filter { $0.title.lowercased().contains(query.lowercased()) }
+        self.movies = self.allPopularMovies.filter {
+            guard let title = $0.title else { return false }
+            return title.lowercased().contains(query.lowercased())
+        }
         self.delegate?.searchSuccess()
     }
 }

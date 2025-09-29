@@ -8,9 +8,9 @@
 import Foundation
 
 struct MovieResponse: Decodable {
-    let page: Int
-    let results: [Movie]
-    let totalPages: Int
+    let page: Int?
+    let results: [Movie]?
+    let totalPages: Int?
     
     enum CodingKeys: String, CodingKey {
         case page
@@ -20,11 +20,11 @@ struct MovieResponse: Decodable {
 }
 
 struct Movie: Decodable {
-    let id: Int
-    let title: String
-    let overview: String
+    let id: Int?
+    let title: String?
+    let overview: String?
     let posterPath: String?
-    let voteAverage: Double
+    let voteAverage: Double?
     
     enum CodingKeys: String, CodingKey {
         case id

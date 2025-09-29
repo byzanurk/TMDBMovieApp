@@ -28,11 +28,8 @@ class MovieDetailViewModel: MovieDetailViewModelProtocol {
     
     // MARK: - Properties
     var movie: Movie
-    var movieId: Int?
     var youtubeVideos: [YouTubeVideo] = []
     var cast: [Cast] = []
-
-    
     var delegate: MovieDetailViewModelOutput?
     private let service: NetworkRouterProtocol
     
@@ -43,7 +40,7 @@ class MovieDetailViewModel: MovieDetailViewModelProtocol {
     
     // MARK: - YouTube Videos
     func fetchYoutubeVideos() {
-        service.fetchYoutubeVideos(for: movie.title) { [weak self] result in
+        service.fetchYoutubeVideos(for: movie.title ?? "") { [weak self] result in
             switch result {
             case .success(let success):
                 self?.youtubeVideos = success.items
@@ -56,7 +53,7 @@ class MovieDetailViewModel: MovieDetailViewModelProtocol {
     
     // MARK: - Movie Cast
     func fetchMovieCast() {
-        service.fetchMovieCast(for: movie.id) { [weak self] result in
+        service.fetchMovieCast(for: movie.id ?? 1) { [weak self] result in
             switch result {
             case .success(let success):
                 self?.cast = success.cast
@@ -69,7 +66,7 @@ class MovieDetailViewModel: MovieDetailViewModelProtocol {
 
     // MARK: - Movie Detail
     func fetchMovieDetail() {
-        service.fetchMovieDetail(for: movie.id) { [weak self] result in
+        service.fetchMovieDetail(for: movie.id ?? 0) { [weak self] result in
             switch result {
             case .success(let success):
                 self?.movie = success

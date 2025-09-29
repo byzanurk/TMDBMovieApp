@@ -34,7 +34,7 @@ class MovieDetailViewController: UIViewController {
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        updateStarsRating(voteAverage: viewModel.movie.voteAverage)
+        updateStarsRating(voteAverage: viewModel.movie.voteAverage ?? 0)
     }
 
     // MARK: - Setup
@@ -55,10 +55,10 @@ class MovieDetailViewController: UIViewController {
     }
     
     private func updateUI(with movie: Movie) {
-        titleLabel.text = movie.title.isEmpty ? "No Title Available" : movie.title
+        titleLabel.text = movie.title?.isEmpty ?? false ? "No Title Available" : movie.title
         titleLabel.numberOfLines = 2
         
-        overviewLabel.text = movie.overview.isEmpty ? "No Overview Available" : movie.overview
+        overviewLabel.text = movie.overview?.isEmpty ?? false ? "No Overview Available" : movie.overview
         overviewLabel.numberOfLines = 0
 
         posterImageView.layer.cornerRadius = 8
