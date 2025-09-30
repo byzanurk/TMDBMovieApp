@@ -11,16 +11,16 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		D8F3FF8F2E704F4300D1B393 /* Mobilist-iOS-Challenge.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Mobilist-iOS-Challenge.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		D8F3FF8F2E704F4300D1B393 /* TMDBMovieApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TMDBMovieApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
-		D8F3FFA12E704F4400D1B393 /* Exceptions for "Mobilist-iOS-Challenge" folder in "Mobilist-iOS-Challenge" target */ = {
+		D8F3FFA12E704F4400D1B393 /* Exceptions for "Mobilist-iOS-Challenge" folder in "TMDBMovieApp" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				Info.plist,
 			);
-			target = D8F3FF8E2E704F4300D1B393 /* Mobilist-iOS-Challenge */;
+			target = D8F3FF8E2E704F4300D1B393 /* TMDBMovieApp */;
 		};
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
@@ -28,7 +28,7 @@
 		D8F3FF912E704F4300D1B393 /* Mobilist-iOS-Challenge */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			exceptions = (
-				D8F3FFA12E704F4400D1B393 /* Exceptions for "Mobilist-iOS-Challenge" folder in "Mobilist-iOS-Challenge" target */,
+				D8F3FFA12E704F4400D1B393 /* Exceptions for "Mobilist-iOS-Challenge" folder in "TMDBMovieApp" target */,
 			);
 			path = "Mobilist-iOS-Challenge";
 			sourceTree = "<group>";
@@ -58,7 +58,7 @@
 		D8F3FF902E704F4300D1B393 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				D8F3FF8F2E704F4300D1B393 /* Mobilist-iOS-Challenge.app */,
+				D8F3FF8F2E704F4300D1B393 /* TMDBMovieApp.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -66,9 +66,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		D8F3FF8E2E704F4300D1B393 /* Mobilist-iOS-Challenge */ = {
+		D8F3FF8E2E704F4300D1B393 /* TMDBMovieApp */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = D8F3FFA22E704F4400D1B393 /* Build configuration list for PBXNativeTarget "Mobilist-iOS-Challenge" */;
+			buildConfigurationList = D8F3FFA22E704F4400D1B393 /* Build configuration list for PBXNativeTarget "TMDBMovieApp" */;
 			buildPhases = (
 				D8F3FF8B2E704F4300D1B393 /* Sources */,
 				D8F3FF8C2E704F4300D1B393 /* Frameworks */,
@@ -81,12 +81,12 @@
 			fileSystemSynchronizedGroups = (
 				D8F3FF912E704F4300D1B393 /* Mobilist-iOS-Challenge */,
 			);
-			name = "Mobilist-iOS-Challenge";
+			name = TMDBMovieApp;
 			packageProductDependencies = (
 				D81293662E749DBB002A2B85 /* Kingfisher */,
 			);
 			productName = "Mobilist-iOS-Challenge";
-			productReference = D8F3FF8F2E704F4300D1B393 /* Mobilist-iOS-Challenge.app */;
+			productReference = D8F3FF8F2E704F4300D1B393 /* TMDBMovieApp.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -104,7 +104,7 @@
 					};
 				};
 			};
-			buildConfigurationList = D8F3FF8A2E704F4300D1B393 /* Build configuration list for PBXProject "Mobilist-iOS-Challenge" */;
+			buildConfigurationList = D8F3FF8A2E704F4300D1B393 /* Build configuration list for PBXProject "TMDBMovieApp" */;
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -121,7 +121,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				D8F3FF8E2E704F4300D1B393 /* Mobilist-iOS-Challenge */,
+				D8F3FF8E2E704F4300D1B393 /* TMDBMovieApp */,
 			);
 		};
 /* End PBXProject section */
@@ -323,7 +323,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		D8F3FF8A2E704F4300D1B393 /* Build configuration list for PBXProject "Mobilist-iOS-Challenge" */ = {
+		D8F3FF8A2E704F4300D1B393 /* Build configuration list for PBXProject "TMDBMovieApp" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				D8F3FFA52E704F4400D1B393 /* Debug */,
@@ -332,7 +332,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		D8F3FFA22E704F4400D1B393 /* Build configuration list for PBXNativeTarget "Mobilist-iOS-Challenge" */ = {
+		D8F3FFA22E704F4400D1B393 /* Build configuration list for PBXNativeTarget "TMDBMovieApp" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				D8F3FFA32E704F4400D1B393 /* Debug */,
