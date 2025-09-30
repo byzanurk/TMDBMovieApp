@@ -7,7 +7,7 @@
 
 import UIKit
 
-class PersonMoviesCell: UICollectionViewCell {
+final class PersonMoviesCell: UICollectionViewCell {
 
     static let identifier = "PersonMoviesCell"
     

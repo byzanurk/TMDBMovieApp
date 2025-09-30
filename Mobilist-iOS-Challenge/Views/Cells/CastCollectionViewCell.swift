@@ -1,5 +1,5 @@
 //
-//  CastCell.swift
+//  CastCollectionViewCell.swift
 //  Mobilist-iOS-Challenge
 //
 //  Created by Beyza Nur Tekerek on 20.09.2025.
@@ -8,9 +8,9 @@
 import UIKit
 import Kingfisher
 
-class CastCell: UICollectionViewCell {
+final class CastCollectionViewCell: UICollectionViewCell {
 
-    static let identifier = "CastCell"
+    static let identifier = "CastCollectionViewCell"
     
     @IBOutlet weak var personImageView: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!

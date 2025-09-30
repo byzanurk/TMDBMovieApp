@@ -8,7 +8,7 @@
 import UIKit
 import Kingfisher
 
-class YoutubeTrailerCell: UICollectionViewCell {
+final class YoutubeTrailerCell: UICollectionViewCell {
 
     static let identifier = "YoutubeTrailerCell"
     

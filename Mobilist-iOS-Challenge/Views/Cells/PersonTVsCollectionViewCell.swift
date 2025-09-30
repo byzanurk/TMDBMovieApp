@@ -7,7 +7,7 @@
 
 import UIKit
 
-class PersonTVsCell: UICollectionViewCell {
+final class PersonTVsCell: UICollectionViewCell {
     
     static let identifier = "PersonTVsCell"
 
