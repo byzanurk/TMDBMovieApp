@@ -15,7 +15,7 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
-		D8F3FFA12E704F4400D1B393 /* Exceptions for "Mobilist-iOS-Challenge" folder in "TMDBMovieApp" target */ = {
+		D8F3FFA12E704F4400D1B393 /* Exceptions for "TMDBMovieApp" folder in "TMDBMovieApp" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				Info.plist,
@@ -25,12 +25,12 @@
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
-		D8F3FF912E704F4300D1B393 /* Mobilist-iOS-Challenge */ = {
+		D8F3FF912E704F4300D1B393 /* TMDBMovieApp */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			exceptions = (
-				D8F3FFA12E704F4400D1B393 /* Exceptions for "Mobilist-iOS-Challenge" folder in "TMDBMovieApp" target */,
+				D8F3FFA12E704F4400D1B393 /* Exceptions for "TMDBMovieApp" folder in "TMDBMovieApp" target */,
 			);
-			path = "Mobilist-iOS-Challenge";
+			path = TMDBMovieApp;
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
@@ -50,7 +50,7 @@
 		D8F3FF862E704F4300D1B393 = {
 			isa = PBXGroup;
 			children = (
-				D8F3FF912E704F4300D1B393 /* Mobilist-iOS-Challenge */,
+				D8F3FF912E704F4300D1B393 /* TMDBMovieApp */,
 				D8F3FF902E704F4300D1B393 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -79,7 +79,7 @@
 			dependencies = (
 			);
 			fileSystemSynchronizedGroups = (
-				D8F3FF912E704F4300D1B393 /* Mobilist-iOS-Challenge */,
+				D8F3FF912E704F4300D1B393 /* TMDBMovieApp */,
 			);
 			name = TMDBMovieApp;
 			packageProductDependencies = (
