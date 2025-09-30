@@ -54,6 +54,7 @@ final class MovieDetailViewController: UIViewController {
         viewModel.fetchMovieCast()
     }
     
+    // MARK: - UI Update
     private func updateUI(with movie: Movie) {
         titleLabel.text = movie.title?.isEmpty ?? false ? "No Title Available" : movie.title
         titleLabel.numberOfLines = 2
@@ -139,6 +140,7 @@ extension MovieDetailViewController: UICollectionViewDelegate, UICollectionViewD
     }
 }
 
+// MARK: - ViewModel Output
 extension MovieDetailViewController: MovieDetailViewModelOutput {
     func didFetchMovieCast() {
         DispatchQueue.main.async {

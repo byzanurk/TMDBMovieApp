@@ -31,6 +31,7 @@ final class PersonDetailViewController: UIViewController {
         configureInitialState()
     }
     
+    // MARK: - Setup
     private func setupCollectionViews() {
         movieCollectionView.delegate = self
         movieCollectionView.dataSource = self
@@ -40,7 +41,7 @@ final class PersonDetailViewController: UIViewController {
         tvCollectionView.dataSource = self
         tvCollectionView.register(UINib(nibName: "PersonTVsCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "PersonTVsCollectionViewCell")
     }
-        
+    
     private func configureInitialState() {
         updateUI(with: viewModel.personDetail)
         viewModel.fetchPersonDetail()
@@ -69,11 +70,10 @@ final class PersonDetailViewController: UIViewController {
             personImageView.image = UIImage(systemName: "person.fill")
             backgroundImageView.image = UIImage(systemName: "photo")
         }
-            
     }
-
 }
 
+// MARK: - Collection View Delegates & Data Sources
 extension PersonDetailViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if collectionView == movieCollectionView {
@@ -125,7 +125,7 @@ extension PersonDetailViewController: UICollectionViewDelegate, UICollectionView
     }
 }
 
-
+// MARK: - ViewModel Output
 extension PersonDetailViewController: PersonDetailViewModelOutput {
     func didFetchPersonDetail() {
         updateUI(with: viewModel.personDetail)
