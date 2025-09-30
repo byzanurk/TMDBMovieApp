@@ -24,7 +24,7 @@ protocol MovieDetailViewModelOutput: AnyObject {
     func showError(message: String)
 }
 
-class MovieDetailViewModel: MovieDetailViewModelProtocol {
+final class MovieDetailViewModel: MovieDetailViewModelProtocol {
     
     // MARK: - Properties
     var movie: Movie

@@ -1,5 +1,5 @@
 //
-//  YoutubeTrailerCell.swift
+//  YoutubeTrailerCollectionViewCell.swift
 //  Mobilist-iOS-Challenge
 //
 //  Created by Beyza Nur Tekerek on 19.09.2025.
@@ -8,9 +8,9 @@
 import UIKit
 import Kingfisher
 
-final class YoutubeTrailerCell: UICollectionViewCell {
+final class YoutubeTrailerCollectionViewCell: UICollectionViewCell {
 
-    static let identifier = "YoutubeTrailerCell"
+    static let identifier = "YoutubeTrailerCollectionViewCell"
     
     @IBOutlet weak var thumbnailImageView: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!

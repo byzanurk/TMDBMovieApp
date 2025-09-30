@@ -8,7 +8,7 @@
 import UIKit
 import Kingfisher
 
-class MovieDetailViewController: UIViewController {
+final class MovieDetailViewController: UIViewController {
 
     var viewModel: MovieDetailViewModelProtocol!
     var coordinator: Coordinator!
@@ -41,11 +41,11 @@ class MovieDetailViewController: UIViewController {
     private func setupCollectionViews() {
         youtubeTrailerCollectionView.delegate = self
         youtubeTrailerCollectionView.dataSource = self
-        youtubeTrailerCollectionView.register(UINib(nibName: "YoutubeTrailerCell", bundle: nil), forCellWithReuseIdentifier: "YoutubeTrailerCell")
+        youtubeTrailerCollectionView.register(UINib(nibName: "YoutubeTrailerCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "YoutubeTrailerCollectionViewCell")
         
         castCollectionView.delegate = self
         castCollectionView.dataSource = self
-        castCollectionView.register(UINib(nibName: "CastCell", bundle: nil), forCellWithReuseIdentifier: "CastCell")
+        castCollectionView.register(UINib(nibName: "CastCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "CastCollectionViewCell")
     }
         
     private func configureInitialState() {
@@ -108,12 +108,12 @@ extension MovieDetailViewController: UICollectionViewDelegate, UICollectionViewD
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if collectionView == youtubeTrailerCollectionView {
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "YoutubeTrailerCell", for: indexPath) as! YoutubeTrailerCell
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "YoutubeTrailerCollectionViewCell", for: indexPath) as! YoutubeTrailerCollectionViewCell
             let video = viewModel.youtubeVideos[indexPath.item]
             cell.configure(with: video)
             return cell
         } else {
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CastCell", for: indexPath) as! CastCell
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CastCollectionViewCell", for: indexPath) as! CastCollectionViewCell
             let actor = viewModel.cast[indexPath.item]
             cell.configure(with: actor)
             return cell

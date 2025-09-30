@@ -8,7 +8,7 @@
 import UIKit
 import Kingfisher
 
-class PersonDetailViewController: UIViewController {
+final class PersonDetailViewController: UIViewController {
     
     // MARK: - Properties
     var viewModel: PersonDetailViewModelProtocol!
@@ -34,11 +34,11 @@ class PersonDetailViewController: UIViewController {
     private func setupCollectionViews() {
         movieCollectionView.delegate = self
         movieCollectionView.dataSource = self
-        movieCollectionView.register(UINib(nibName: "PersonMoviesCell", bundle: nil), forCellWithReuseIdentifier: "PersonMoviesCell")
+        movieCollectionView.register(UINib(nibName: "PersonMoviesCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "PersonMoviesCollectionViewCell")
         
         tvCollectionView.delegate = self
         tvCollectionView.dataSource = self
-        tvCollectionView.register(UINib(nibName: "PersonTVsCell", bundle: nil), forCellWithReuseIdentifier: "PersonTVsCell")
+        tvCollectionView.register(UINib(nibName: "PersonTVsCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "PersonTVsCollectionViewCell")
     }
         
     private func configureInitialState() {
@@ -85,12 +85,12 @@ extension PersonDetailViewController: UICollectionViewDelegate, UICollectionView
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if collectionView == movieCollectionView {
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PersonMoviesCell", for: indexPath) as! PersonMoviesCell
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PersonMoviesCollectionViewCell", for: indexPath) as! PersonMoviesCollectionViewCell
             guard let cast = viewModel.movies?.cast[indexPath.item] else { return UICollectionViewCell() }
             cell.configure(with: cast)
             return cell
         } else {
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PersonTVsCell", for: indexPath) as! PersonTVsCell
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PersonTVsCollectionViewCell", for: indexPath) as! PersonTVsCollectionViewCell
             guard let tvShow = viewModel.tvShows?.cast[indexPath.item] else { return UICollectionViewCell() }
             cell.configure(with: tvShow)
             return cell

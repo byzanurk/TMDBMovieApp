@@ -1,5 +1,5 @@
 //
-//  PersonMoviesCell.swift
+//  PersonMoviesCollectionViewCell.swift
 //  Mobilist-iOS-Challenge
 //
 //  Created by Beyza Nur Tekerek on 20.09.2025.
@@ -7,9 +7,9 @@
 
 import UIKit
 
-final class PersonMoviesCell: UICollectionViewCell {
+final class PersonMoviesCollectionViewCell: UICollectionViewCell {
 
-    static let identifier = "PersonMoviesCell"
+    static let identifier = "PersonMoviesCollectionViewCell"
     
     @IBOutlet private weak var movieImageView: UIImageView!
     

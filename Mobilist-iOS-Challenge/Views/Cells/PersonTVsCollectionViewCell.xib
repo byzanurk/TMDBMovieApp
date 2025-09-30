@@ -10,7 +10,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="PersonTVsCell" id="gTV-IL-0wX" customClass="PersonTVsCell" customModule="Mobilist_iOS_Challenge" customModuleProvider="target">
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="PersonTVsCollectionViewCell" id="gTV-IL-0wX" customClass="PersonTVsCollectionViewCell" customModule="Mobilist_iOS_Challenge" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="110" height="160"/>
             <autoresizingMask key="autoresizingMask"/>
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -26,9 +26,11 @@
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstAttribute="height" constant="160" id="B6H-ga-lQF"/>
                             <constraint firstAttribute="bottom" secondItem="pdZ-nr-b1l" secondAttribute="bottom" id="LsM-QG-Eal"/>
                             <constraint firstAttribute="trailing" secondItem="pdZ-nr-b1l" secondAttribute="trailing" id="aXu-zn-9nQ"/>
                             <constraint firstItem="pdZ-nr-b1l" firstAttribute="top" secondItem="8Hr-FZ-8fv" secondAttribute="top" id="kgr-L1-ssh"/>
+                            <constraint firstAttribute="width" constant="110" id="m74-1b-hNW"/>
                             <constraint firstItem="pdZ-nr-b1l" firstAttribute="leading" secondItem="8Hr-FZ-8fv" secondAttribute="leading" id="uZH-cn-z37"/>
                         </constraints>
                     </view>

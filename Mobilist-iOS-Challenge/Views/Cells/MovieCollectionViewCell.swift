@@ -8,7 +8,7 @@
 import UIKit
 import Kingfisher
 
-class MovieCollectionViewCell: UICollectionViewCell {
+final class MovieCollectionViewCell: UICollectionViewCell {
 
     // MARK: - Outlets
     @IBOutlet private weak var containerView: UIView!

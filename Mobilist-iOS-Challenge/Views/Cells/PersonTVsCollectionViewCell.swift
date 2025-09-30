@@ -1,5 +1,5 @@
 //
-//  PersonTVsCell.swift
+//  PersonTVsCollectionViewCell.swift
 //  Mobilist-iOS-Challenge
 //
 //  Created by Beyza Nur Tekerek on 20.09.2025.
@@ -7,9 +7,9 @@
 
 import UIKit
 
-final class PersonTVsCell: UICollectionViewCell {
+final class PersonTVsCollectionViewCell: UICollectionViewCell {
     
-    static let identifier = "PersonTVsCell"
+    static let identifier = "PersonTVsCollectionViewCell"
 
     @IBOutlet private weak var tvImageView: UIImageView!
     
