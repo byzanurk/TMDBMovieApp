@@ -156,7 +156,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = YM4BUS8N7P;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "Mobilist-iOS-Challenge/Info.plist";
+				INFOPLIST_FILE = TMDBMovieApp/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen.storyboard;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
@@ -165,7 +165,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.beyzanurtekerek.Mobilist-iOS-Challenge";
+				PRODUCT_BUNDLE_IDENTIFIER = com.beyzanurtekerek.TMDBMovieApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -182,7 +182,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = YM4BUS8N7P;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "Mobilist-iOS-Challenge/Info.plist";
+				INFOPLIST_FILE = TMDBMovieApp/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen.storyboard;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
@@ -191,7 +191,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.beyzanurtekerek.Mobilist-iOS-Challenge";
+				PRODUCT_BUNDLE_IDENTIFIER = com.beyzanurtekerek.TMDBMovieApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
