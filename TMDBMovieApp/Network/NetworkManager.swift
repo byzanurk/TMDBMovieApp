@@ -7,6 +7,7 @@
 
 import Foundation
 
+// MARK: HTTP Method Enum
 enum HTTPMethod: String {
     case get = "GET"
     case post = "POST"
@@ -14,6 +15,7 @@ enum HTTPMethod: String {
     case delete = "DELETE"
 }
 
+// MARK: Network Error Enum
 enum NetworkError: Error {
     case invalidURL
     case noData
@@ -22,6 +24,7 @@ enum NetworkError: Error {
     case unknown(Error)
 }
 
+// MARK: NetworkManager Protocol
 protocol NetworkManagerProtocol {
     func request<T: Decodable>(
         path: String,
@@ -34,6 +37,7 @@ protocol NetworkManagerProtocol {
     )
 }
 
+// MARK: Network Manager
 final class NetworkManager: NetworkManagerProtocol {
 
     func request<T: Decodable>(
@@ -108,7 +112,8 @@ final class NetworkManager: NetworkManagerProtocol {
             // --- END LOG ---
             
             do {
-                let decoded = try JSONDecoder().decode(responseType, from: data)
+                // T.Type'ı capture etmeden doğrudan T.self kullan.
+                let decoded = try JSONDecoder().decode(T.self, from: data)
                 DispatchQueue.main.async { completion(.success(decoded)) }
             } catch {
                 DispatchQueue.main.async { completion(.failure(.decodingError(error))) }

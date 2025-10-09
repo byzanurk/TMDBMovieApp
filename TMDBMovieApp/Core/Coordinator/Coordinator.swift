@@ -8,14 +8,15 @@
 import Foundation
 import UIKit
 
-// MARK: - Coordinator
+// MARK:  Coordinator
 final class Coordinator: CoordinatorProtocol {
-    // MARK: - Properties
+    
+    // MARK:  Properties
     var parentCoordinator: CoordinatorProtocol?
     var children: [CoordinatorProtocol] = []
     var navigationController: UINavigationController?
     
-    // MARK: - Functions
+    // MARK:  Functions
     func start() {
         let vc = MainViewBuilder.build(coordinator: self)
         navigationController?.setViewControllers([vc],
